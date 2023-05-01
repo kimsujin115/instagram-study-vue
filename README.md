@@ -5,6 +5,8 @@ instagram clone coding study (vue3, mysql)
 
 
 ## vue.js + express + mysql
+fontend / backend 폴더 생성 후 backend 폴더에 express 프레임워크로 백엔드 개발환경 셋팅
+
 > 참고 URL
 
 
