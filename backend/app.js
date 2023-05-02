@@ -11,11 +11,11 @@ var app = express();
 var mysql = require('mysql');
 // Connection 객체 생성 
 var connection = mysql.createConnection({
-  host: 'localhost',
+  host: '127.0.0.1',
   port: 3306,
   user: 'root',   
   password: 'mysqlPW1!',
-  database: 'instagram_db'  
+  database: 'instagram_db'  //기본스키마 설정했을경우 그 스키마 이름으로 정해줘야해
 });  
 // Connect
 connection.connect(function (err) {   
