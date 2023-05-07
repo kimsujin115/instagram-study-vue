@@ -30,9 +30,9 @@ import axios from 'axios';
 export default {
     methods : {
         onSignUp : async () => {
-          await axios.get("/api/users")
+          await axios.get("/api/users/signUp")
           .then((res) => {
-            console.log("응답 데이터 : " , res);
+            console.log("응답 데이터 : " , res.data);
           })
           .catch((err) => {
               console.log('err.message : ', err.message)
@@ -40,6 +40,14 @@ export default {
         }
     },  
     data() {
+      return {
+        user : {
+          userid : '',
+          username : '',
+          email : '',
+          password : '',
+        }
+      }
     }
 
 }
