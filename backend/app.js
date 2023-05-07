@@ -1,30 +1,10 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express'); //익스프레스 불러오기
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var app = express();
-var mysql = require('mysql');
-// Connection 객체 생성 
-var connection = mysql.createConnection({
-  host: '127.0.0.1',
-  port: 3306,
-  user: 'root',   
-  password: 'mysqlPW1!',
-  database: 'instagram_db'  //기본스키마 설정했을경우 그 스키마 이름으로 정해줘야해
-});  
-// Connect
-connection.connect(function (err) {   
-  if (err) {     
-    console.error('mysql connection error');     
-    console.error(err);     
-    throw err;   
-  } 
-});
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,12 +12,15 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+
+app.use('/api/', indexRouter);
+app.use('/api/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -54,5 +37,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// 터미널에 남아있는 포트 지우기 lsof -ti :3000 / kill -9 PID 값
+// app.listen(3000)
 
 module.exports = app;

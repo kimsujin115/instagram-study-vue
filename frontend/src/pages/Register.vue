@@ -7,11 +7,11 @@
         </div>
         <p class="txt">친구들의 사진과 동영상을<br/> 보려면 가입하세요.</p>
         <div class="fieldSet">
-          <input type="text" placeholder="이메일">
+          <input type="text" placeholder="이메일" >
           <input type="text" placeholder="성명">
           <input type="text" placeholder="사용자 이름(ID)">
           <input type="password" placeholder="비밀번호">
-          <button class="btn">가입</button>
+          <button class="btn" @click="onSignUp">가입</button>
         </div>
       </div>
       <div class="box">
@@ -25,7 +25,22 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+    methods : {
+        onSignUp : async () => {
+          await axios.get("/api/users")
+          .then((res) => {
+            console.log("응답 데이터 : " , res);
+          })
+          .catch((err) => {
+              console.log('err.message : ', err.message)
+          });
+        }
+    },  
+    data() {
+    }
 
 }
 </script>
