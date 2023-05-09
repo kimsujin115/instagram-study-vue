@@ -149,14 +149,16 @@ input {
             }
         }
         .etcArea {
-            display: flex;
-            align-items: center;
-            .icon {
-                font-size:26px;
-            }
-            span {
-                margin-left:12px;
-                font-size:18px;
+            button {
+                display: flex;
+                align-items: center;
+                .icon {
+                    font-size:26px;
+                }
+                span {
+                    margin-left:12px;
+                    font-size:18px;
+                }
             }
         }
     }

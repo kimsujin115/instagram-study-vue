@@ -111,12 +111,12 @@ input {
     .layoutWrap .sideMenu nav ul li a span {
       margin-left: 12px;
       font-size: 17px; }
-  .layoutWrap .sideMenu .etcArea {
+  .layoutWrap .sideMenu .etcArea button {
     display: flex;
     align-items: center; }
-    .layoutWrap .sideMenu .etcArea .icon {
+    .layoutWrap .sideMenu .etcArea button .icon {
       font-size: 26px; }
-    .layoutWrap .sideMenu .etcArea span {
+    .layoutWrap .sideMenu .etcArea button span {
       margin-left: 12px;
       font-size: 18px; }
 
