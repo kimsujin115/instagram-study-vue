@@ -1,12 +1,12 @@
 <template>
-  <Resiger></Resiger>
+  <DefaultLayout></DefaultLayout>
 </template>
 
 <script>
-import Resiger from './pages/Register.vue'
+import DefaultLayout from './layout/DefaultLayout.vue'
 
 export default {
   // name: 'App',
-  components: { Resiger }
+  components: { DefaultLayout }
 }
 </script>

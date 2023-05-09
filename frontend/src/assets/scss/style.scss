@@ -7,6 +7,13 @@
 a {
     display: inline-block;
     text-decoration: none;
+    color:#000;
+}
+
+ul {
+    li {
+        list-style: none;
+    }
 }
 
 button {
@@ -86,6 +93,167 @@ input {
                 font-size:14px;
                 color:#0095f6;
                 font-weight: bold;
+            }
+        }
+    }
+}
+
+/* layout */
+.layoutWrap {
+    .sideMenu {
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding:20px;
+        width:200px;
+        height:100vh;
+        border-right:1px solid #d8d8d8;
+        background-color: #fff;
+        z-index: 10;
+        .logo {
+            margin:10px 0;
+            text-align: center;
+            font-size:40px;
+        }
+        nav {
+            ul {
+                li {
+                    & + li {
+                        margin-top:15px;
+                    }
+                    a {
+                        padding:10px 0;;
+                        display: flex;
+                        align-items: center;
+                        .icon {
+                            font-size:26px;
+                        }
+                        .profile {
+                            overflow: hidden;
+                            width:30px;
+                            height:30px;
+                            border-radius: 50%;
+                            img {
+                                width:100%;
+                                height:100%;
+                                object-fit: cover;
+                            }
+                        }
+                        span {
+                            margin-left:12px;
+                            font-size:17px;
+                        }
+                    }
+                }
+            }
+        }
+        .etcArea {
+            display: flex;
+            align-items: center;
+            .icon {
+                font-size:26px;
+            }
+            span {
+                margin-left:12px;
+                font-size:18px;
+            }
+        }
+    }
+    .contentWrap {
+        margin-left:200px;
+        width:calc(100% - 40%);
+        padding:30px;
+    }
+}
+
+.feedList {
+    max-width:500px;
+    li {
+        & + li {
+            
+            margin-top:10px;
+            padding-top:10px;
+            border-top:1px solid #999;
+        }
+        .user {
+            display: flex;
+            align-items: center;
+            padding:15px 0;
+            .profile {
+                overflow: hidden;
+                width:30px;
+                height:30px;
+                border-radius: 50%;
+                img {
+                    width:100%;
+                    height:100%;
+                    object-fit: cover;
+                }
+            }
+            .name {
+                margin-left:10px;
+                font-size:16px;
+                color:#000;
+                font-weight: bold;
+            }
+            .date {
+                position: relative;
+                margin-left:10px;
+                padding-left:10px;
+                font-size:14px;
+                color:#999;
+                &:before {
+                    content :'';
+                    position: absolute;
+                    left: 0;
+                    top:50%;
+                    width:3px;
+                    height:3px;
+                    border-radius: 50%;
+                    transform: translateY(-50%);
+                    background-color: #999;
+                }
+            }
+        }
+        .feedImg {
+            overflow: hidden;
+            img {
+                width:100%;
+                height:500px;
+                object-fit: cover;
+            }
+        }
+        .utill {
+            display: flex;
+            padding:10px 0;
+            justify-content: space-between;
+            button {
+                font-size:26px;
+            }
+            .group {
+                button {
+                    & + button {
+                        margin-left:12px;
+                    }
+                }
+            }
+        }
+        .like_num {
+            font-size:16px;
+            font-weight: bold;
+        }
+        .feedText {
+            margin-top:10px;
+            .writer {
+                display: inline-block;
+                margin-right:10px;
+                font-size:16px;
+                font-weight: bold;
+            }
+            .text {
+                font-size:16px;
+                line-height: 1.2;
             }
         }
     }

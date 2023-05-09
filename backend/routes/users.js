@@ -3,6 +3,8 @@ const connection = require('../controllers/dbConnect');
 const express = require('express');
 const router = express.Router();
 
+// /api/users
+
 /* GET users listing. */
 router.get('/', (req, res, next) => {
   //res.send(rows);
@@ -13,7 +15,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/signUp', (req, res) => {
-  res.send('가입')
+  const userid = req.body.userid
+  res.send(userid)
 })
 
 

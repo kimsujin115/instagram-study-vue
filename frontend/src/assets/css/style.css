@@ -5,7 +5,11 @@
 
 a {
   display: inline-block;
-  text-decoration: none; }
+  text-decoration: none;
+  color: #000; }
+
+ul li {
+  list-style: none; }
 
 button {
   padding: 0;
@@ -70,3 +74,121 @@ input {
       font-size: 14px;
       color: #0095f6;
       font-weight: bold; }
+
+/* layout */
+.layoutWrap .sideMenu {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  width: 200px;
+  height: 100vh;
+  border-right: 1px solid #d8d8d8;
+  background-color: #fff;
+  z-index: 10; }
+  .layoutWrap .sideMenu .logo {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 40px; }
+  .layoutWrap .sideMenu nav ul li + li {
+    margin-top: 15px; }
+  .layoutWrap .sideMenu nav ul li a {
+    padding: 10px 0;
+    display: flex;
+    align-items: center; }
+    .layoutWrap .sideMenu nav ul li a .icon {
+      font-size: 26px; }
+    .layoutWrap .sideMenu nav ul li a .profile {
+      overflow: hidden;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%; }
+      .layoutWrap .sideMenu nav ul li a .profile img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; }
+    .layoutWrap .sideMenu nav ul li a span {
+      margin-left: 12px;
+      font-size: 17px; }
+  .layoutWrap .sideMenu .etcArea {
+    display: flex;
+    align-items: center; }
+    .layoutWrap .sideMenu .etcArea .icon {
+      font-size: 26px; }
+    .layoutWrap .sideMenu .etcArea span {
+      margin-left: 12px;
+      font-size: 18px; }
+
+.layoutWrap .contentWrap {
+  margin-left: 200px;
+  width: calc(100% - 40%);
+  padding: 30px; }
+
+.feedList {
+  max-width: 500px; }
+  .feedList li + li {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #999; }
+  .feedList li .user {
+    display: flex;
+    align-items: center;
+    padding: 15px 0; }
+    .feedList li .user .profile {
+      overflow: hidden;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%; }
+      .feedList li .user .profile img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; }
+    .feedList li .user .name {
+      margin-left: 10px;
+      font-size: 16px;
+      color: #000;
+      font-weight: bold; }
+    .feedList li .user .date {
+      position: relative;
+      margin-left: 10px;
+      padding-left: 10px;
+      font-size: 14px;
+      color: #999; }
+      .feedList li .user .date:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        background-color: #999; }
+  .feedList li .feedImg {
+    overflow: hidden; }
+    .feedList li .feedImg img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover; }
+  .feedList li .utill {
+    display: flex;
+    padding: 10px 0;
+    justify-content: space-between; }
+    .feedList li .utill button {
+      font-size: 26px; }
+    .feedList li .utill .group button + button {
+      margin-left: 12px; }
+  .feedList li .like_num {
+    font-size: 16px;
+    font-weight: bold; }
+  .feedList li .feedText {
+    margin-top: 10px; }
+    .feedList li .feedText .writer {
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 16px;
+      font-weight: bold; }
+    .feedList li .feedText .text {
+      font-size: 16px;
+      line-height: 1.2; }
