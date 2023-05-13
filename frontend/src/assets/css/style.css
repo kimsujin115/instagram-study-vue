@@ -122,11 +122,50 @@ input {
 
 .layoutWrap .contentWrap {
   margin-left: 200px;
-  width: calc(100% - 40%);
-  padding: 30px; }
+  width: calc(100% - 30%); }
+  .layoutWrap .contentWrap .innerCont {
+    padding: 30px 50px; }
+    .layoutWrap .contentWrap .innerCont .storyList {
+      display: flex;
+      margin-bottom: 20px; }
+      .layoutWrap .contentWrap .innerCont .storyList li + li {
+        margin-left: 15px; }
+      .layoutWrap .contentWrap .innerCont .storyList li button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 70px; }
+        .layoutWrap .contentWrap .innerCont .storyList li button .img {
+          overflow: hidden;
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          border: 2px solid #d4d4d4; }
+          .layoutWrap .contentWrap .innerCont .storyList li button .img img {
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #fff; }
+        .layoutWrap .contentWrap .innerCont .storyList li button .user {
+          overflow: hidden;
+          width: 100%;
+          margin-top: 10px;
+          font-size: 14px;
+          color: #d4d4d4;
+          text-overflow: ellipsis; }
+      .layoutWrap .contentWrap .innerCont .storyList li.active button .img {
+        border-color: transparent;
+        background-origin: border-box;
+        background-image: linear-gradient(90deg, #ad36ca 0%, #fd421d 70%, #fcdb45 100%); }
+      .layoutWrap .contentWrap .innerCont .storyList li.active button .user {
+        color: #000; }
 
 .feedList {
-  max-width: 500px; }
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto; }
   .feedList li + li {
     margin-top: 10px;
     padding-top: 10px;
@@ -137,13 +176,23 @@ input {
     padding: 15px 0; }
     .feedList li .user .profile {
       overflow: hidden;
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%; }
       .feedList li .user .profile img {
         width: 100%;
         height: 100%;
-        object-fit: cover; }
+        object-fit: cover;
+        border-radius: 50%;
+        background: #fff; }
+      .feedList li .user .profile.active {
+        cursor: pointer;
+        border-color: transparent;
+        border: 2px solid transparent;
+        background-origin: border-box;
+        background-image: linear-gradient(90deg, #ad36ca 0%, #fd421d 70%, #fcdb45 100%); }
+        .feedList li .user .profile.active img {
+          border: 1px solid #fff; }
     .feedList li .user .name {
       margin-left: 10px;
       font-size: 16px;
@@ -190,5 +239,13 @@ input {
       font-size: 16px;
       font-weight: bold; }
     .feedList li .feedText .text {
-      font-size: 16px;
-      line-height: 1.2; }
+      overflow: hidden;
+      display: -webkit-box;
+      font-size: 14x;
+      line-height: 1.2;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; }
+    .feedList li .feedText .btnMore {
+      color: #999;
+      font-size: 14px; }
