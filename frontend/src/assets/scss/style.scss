@@ -320,13 +320,8 @@ input {
                 font-weight: bold;
             }
             .text {
-                overflow: hidden;
-                display: -webkit-box;
                 font-size:14x;
                 line-height: 1.2;
-                text-overflow: ellipsis;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
             }
             .btnMore {
                 color:#999;

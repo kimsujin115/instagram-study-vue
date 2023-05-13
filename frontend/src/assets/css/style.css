@@ -239,13 +239,8 @@ input {
       font-size: 16px;
       font-weight: bold; }
     .feedList li .feedText .text {
-      overflow: hidden;
-      display: -webkit-box;
       font-size: 14x;
-      line-height: 1.2;
-      text-overflow: ellipsis;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical; }
+      line-height: 1.2; }
     .feedList li .feedText .btnMore {
       color: #999;
       font-size: 14px; }

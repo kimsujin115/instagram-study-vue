@@ -102,7 +102,7 @@
                         <div class="feedText">
                             <span class="writer">instar.id</span>
                             <span class="text">인스타 피드 게시글 내용인스타 피드 게시글 내용인스타 피드 게시글 내용인스타 피드 게시글 내용인스타 피드 게시글 내용인스타 피드 게시글 내용</span>
-                            <button class="btnMore">더 보기</button>
+                            <button class="btnMore">...더 보기</button>
                         </div>
                     </li>
                 </ul>
