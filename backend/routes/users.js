@@ -30,12 +30,12 @@ router.post('/signUp', (req, res, next) => {
       });
       res.json({
         success: true,
-        message: 'Sing Up Success!'
+        message: '가입 성공!'
       })
     } else {
       res.json({
         success: false,
-        message: 'Sign Up Failed Please use anoter ID'
+        message: '이미 사용 중인 아이디가 있습니다.'
       })
     }
   })

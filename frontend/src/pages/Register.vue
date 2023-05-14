@@ -44,7 +44,7 @@ export default {
         })
         .then((res) => {
           console.log('응답메시지 : ' , res)
-          if (res.data.success == true) {
+          if (res.data.success == true) { //가입성공
             console.log(res.data.message)
           } else {
             console.log(res.data.message)
