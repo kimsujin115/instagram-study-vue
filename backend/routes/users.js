@@ -30,12 +30,12 @@ router.post('/signUp', (req, res, next) => {
       });
       res.json({
         success: true,
-        message: '가입 성공!'
+        message: '가입성공! 로그인 해주세요.'
       })
     } else {
       res.json({
         success: false,
-        message: '이미 사용 중인 아이디가 있습니다.'
+        message: '동일한 아이디가 존재합니다. 다른 아이디를 입력해 주세요.'
       })
     }
   })

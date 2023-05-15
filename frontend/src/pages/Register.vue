@@ -39,19 +39,24 @@ export default {
   },
   methods : {
     onSignUp : async function() {
+
+        if (this.users.userid === '' || this.users.name == '' || this.users.email == '' || this.users.password == '') {
+          alert('아이디, 이름, 이메일, 비밀번호를 모두 입력해 주세요.');
+          return;
+        }
+
         await this.$Axios.post("/api/users/signUp", {
-          users : this.users,
+          users : this.users, 
         })
         .then((res) => {
-          console.log('응답메시지 : ' , res)
           if (res.data.success == true) { //가입성공
-            console.log(res.data.message)
-          } else {
-            console.log(res.data.message)
+            alert(res.data.message)
+          } else { //가입실패
+            alert(res.data.message)
           }
         })
         .catch((err) => {
-            console.log('err.message : ', err)
+            console.log('에러메세지 : ', err)
         });
       }
     },
