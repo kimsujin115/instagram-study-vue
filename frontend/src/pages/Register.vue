@@ -17,7 +17,7 @@
       <div class="box">
         <div class="text">
           <span>계정이 있으신가요?</span>
-          <button class="btn">로그인</button>
+          <router-link to="/login" class="btn">로그인</router-link>
         </div>
       </div>
     </div>

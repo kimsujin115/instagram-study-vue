@@ -1,12 +1,11 @@
 <template>
-  <Resiger></Resiger>
+  <router-view></router-view>
 </template>
 
 <script>
-import Resiger from './pages/Register.vue'
 
 export default {
   // name: 'App',
-  components: { Resiger }
+  //components: { Resiger }
 }
 </script>
