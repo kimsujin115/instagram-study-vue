@@ -16,11 +16,11 @@ router.get('/', (req, res, next) => {
 
 router.post('/signUp', (req, res, next) => {
   const user = {
-    'userid' : req.body.users.userid,
-    'name' : req.body.users.name,
-    'email' : req.body.users.email,
-    'password' : req.body.users.password,
-    'profile_img' : req.body.users.profile_img,
+    'userid' : req.body.userid,
+    'name' : req.body.username,
+    'email' : req.body.email,
+    'password' : req.body.password,
+    'profile_img' : req.body.profile_img,
   };
   connection.query(`SELECT userid FROM users WHERE userid = '${user.userid}'`, function(err, row) {
     if ( row[0] == undefined) { //동일한 userid 없을 경우
