@@ -14,7 +14,7 @@
       <div class="box">
         <div class="text">
           <span>계정이 없으신가요?</span>
-          <button class="btn">가입하기</button>
+          <router-link to="/" class="btn">가입하기</router-link>
         </div>
       </div>
     </div>
