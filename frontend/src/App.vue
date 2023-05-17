@@ -1,11 +1,11 @@
 <template>
-  <router-view></router-view>
+  <Layout></Layout>
 </template>
 
 <script>
+import Layout from './layout/Layout.vue'
 
 export default {
-  // name: 'App',
-  //components: { Resiger }
+  components: { Layout },
 }
 </script>
