@@ -8,13 +8,14 @@
         <div class="fieldSet">
           <input type="text" placeholder="사용자 이름(ID)" v-model="userid">
           <input type="password" placeholder="비밀번호" v-model="password">
+          <p class="error" v-if="errText">{{errText}}</p>
           <button class="btn" @click="onLogin">로그인</button>
         </div>
       </div>
       <div class="box">
         <div class="text">
           <span>계정이 없으신가요?</span>
-          <router-link to="/" class="btn">가입하기</router-link>
+          <router-link to="/register" class="btn">가입하기</router-link>
         </div>
       </div>
     </div>
@@ -29,6 +30,7 @@ export default {
   setup() {
     const userid = ref('');
     const password = ref('');
+    const errText = ref('');
 
     const onLogin = async () => {
       await axios.post('/api/users/login', {
@@ -39,7 +41,8 @@ export default {
         if(res.data.success == true){
           alert(res.data.message)
         } else {
-          alert(res.data.message)
+          errText.value = res.data.message
+          //alert(res.data.message)
         }
       })
       .catch((err) => {
@@ -51,6 +54,7 @@ export default {
       userid,
       password,
       onLogin,
+      errText,
     }
   }
 }
