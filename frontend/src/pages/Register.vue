@@ -62,9 +62,9 @@ export default {
         errText.value = '';
         vaildBool.value = true;
       }
-      
     })
 
+    //가입하기
     const onSignUp = async () => {
       if (userid.value === '' || username.value == '' || email.value == '' || password.value == '') {
         errText.value = '아이디, 이름, 이메일, 비밀번호를 모두 입력해 주세요.'
@@ -93,8 +93,6 @@ export default {
         });
 
       }
-      
-
     }
 
     return {
