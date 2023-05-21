@@ -74,6 +74,7 @@ export default {
         return;
       } else {
         vaildBool.value = true
+
         await axios.post("/api/users/signUp", {
           userid : userid.value,
           username : username.value,
@@ -87,6 +88,7 @@ export default {
             router.push('/login'); 
           } else { //가입실패
             errText.value = res.data.message
+            vaildBool.value = false;
             //alert(res.data.message)
           }
         })
