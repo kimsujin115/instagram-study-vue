@@ -69,7 +69,9 @@ input {
     font-size: 16px;
     color: #fff;
     border-radius: 5px;
-    background: #59b5fa; }
+    background: #cfcfcf; }
+    .instaIntroArea .box .fieldSet .btn.active {
+      background: #59b5fa; }
   .instaIntroArea .box .text {
     text-align: center;
     font-size: 14px; }

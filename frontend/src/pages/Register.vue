@@ -12,7 +12,7 @@
           <input type="text" placeholder="사용자 이름(ID)" v-model="userid">
           <input type="password" placeholder="비밀번호" v-model="password">
           <p class="error" v-if="errText">{{errText}}</p>
-          <button class="btn" @click="onSignUp">가입</button>
+          <button :class="`btn ${vaildBool ? 'active' : ''}`" @click="onSignUp">가입</button>
         </div>
       </div>
       <div class="box">
@@ -48,7 +48,6 @@ export default {
       const pwChk = /^[A-Za-z0-9]{6,15}$/;
 
       if (!emailChk.test(email.value) && email.value.length > 0) { //이메일 유효성 체크
-        //vaildBool.value = false;
         errText.value = '이메일 형식에 맞게 입력해 주세요.'
         return;
       } else if (!nameChk.test(username.value) && username.value.length > 0) { //이름 유효성 체크
@@ -59,7 +58,7 @@ export default {
       }else if (!pwChk.test(password.value) && password.value.length > 0) { //비밀번호 유효성 체크
         errText.value = '비밀번호는 숫자를 포함해서 6자 이상 15자 이하로 입력해 주세요.'
         return;
-      } else {
+      } else if (userid.value != '' && username.value != '' && email.value != '' && password.value != ''){
         errText.value = '';
         vaildBool.value = true;
       }
@@ -68,13 +67,10 @@ export default {
 
     const onSignUp = async () => {
       if (userid.value === '' || username.value == '' || email.value == '' || password.value == '') {
-        vaildBool.value = false
         errText.value = '아이디, 이름, 이메일, 비밀번호를 모두 입력해 주세요.'
         //alert('아이디, 이름, 이메일, 비밀번호를 모두 입력해 주세요.');
         return;
       } else {
-        vaildBool.value = true
-
         await axios.post("/api/users/signUp", {
           userid : userid.value,
           username : username.value,
