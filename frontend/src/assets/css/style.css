@@ -58,6 +58,10 @@ input {
     margin-top: 10px; }
     .instaIntroArea .box .fieldSet input:first-child {
       margin-top: 0; }
+  .instaIntroArea .box .fieldSet .error {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #fd421d; }
   .instaIntroArea .box .fieldSet .btn {
     margin-top: 10px;
     width: 100%;

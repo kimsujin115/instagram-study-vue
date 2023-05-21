@@ -11,6 +11,7 @@
           <input type="text" placeholder="성명" v-model="username">
           <input type="text" placeholder="사용자 이름(ID)" v-model="userid">
           <input type="password" placeholder="비밀번호" v-model="password">
+          <p class="error" v-if="errText">{{errText}}</p>
           <button class="btn" @click="onSignUp">가입</button>
         </div>
       </div>
@@ -25,7 +26,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 
@@ -36,13 +37,43 @@ export default {
     const username = ref('');
     const email = ref('');
     const password = ref('');
-    
+    const vaildBool = ref(false);
+    const errText = ref('');
+
+    //유효성 체크
+    const setVaildCheck = watch(() => {
+      const emailChk = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+      const nameChk = /^[가-힣a-zA-Z]{2,20}$/;
+      const idChk = /^[a-zA-Z0-9\s_.]{5,}$/;
+      const pwChk = /^[A-Za-z0-9]{6,15}$/;
+
+      if (!emailChk.test(email.value) && email.value.length > 0) { //이메일 유효성 체크
+        //vaildBool.value = false;
+        errText.value = '이메일 형식에 맞게 입력해 주세요.'
+        return;
+      } else if (!nameChk.test(username.value) && username.value.length > 0) { //이름 유효성 체크
+        errText.value = '올바른 형식이 아닙니다. 성명은 2자 이상 입력해 주세요.'
+        return;
+      } else if (!idChk.test(userid.value) && userid.value.length > 0) { // 아이디 유효성 체크
+        errText.value = '아이디는 5자 이상 입력해 주세요. 특수문자는 .과 _ 만 사용 가능합니다.'
+      }else if (!pwChk.test(password.value) && password.value.length > 0) { //비밀번호 유효성 체크
+        errText.value = '비밀번호는 숫자를 포함해서 6자 이상 15자 이하로 입력해 주세요.'
+        return;
+      } else {
+        errText.value = '';
+        vaildBool.value = true;
+      }
+      
+    })
+
     const onSignUp = async () => {
       if (userid.value === '' || username.value == '' || email.value == '' || password.value == '') {
-          alert('아이디, 이름, 이메일, 비밀번호를 모두 입력해 주세요.');
-          return;
-        }
-
+        vaildBool.value = false
+        errText.value = '아이디, 이름, 이메일, 비밀번호를 모두 입력해 주세요.'
+        //alert('아이디, 이름, 이메일, 비밀번호를 모두 입력해 주세요.');
+        return;
+      } else {
+        vaildBool.value = true
         await axios.post("/api/users/signUp", {
           userid : userid.value,
           username : username.value,
@@ -55,12 +86,17 @@ export default {
             alert(res.data.message)
             router.push('/login'); 
           } else { //가입실패
-            alert(res.data.message)
+            errText.value = res.data.message
+            //alert(res.data.message)
           }
         })
         .catch((err) => {
             console.log('에러메세지 : ', err)
         });
+
+      }
+      
+
     }
 
     return {
@@ -68,7 +104,10 @@ export default {
       username,
       email,
       password,
+      errText,
       onSignUp,
+      vaildBool,
+      setVaildCheck,
     }
   }
 }
