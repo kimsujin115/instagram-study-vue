@@ -6,9 +6,9 @@ import Notifications from '../pages/Notifications.vue'
 import Myfeed from '../pages/MyFeed.vue'
 
 const routes = [
-    {path:'/', name:'home', component:Home, meta: { layout:'DefaultLayout' }},
-    {path:'/notifications', name:'notification', component:Notifications, meta: { layout:'DefaultLayout' }},
-    {path:'/myfeed', name:'myfeed', component:Myfeed, meta: { layout:'DefaultLayout' }},
+    {path:'/', name:'home', component:Home, meta: { layout:'DefaultLayout', requireAuth:true }},
+    {path:'/notifications', name:'notification', component:Notifications, meta: { layout:'DefaultLayout', requireAuth:true }},
+    {path:'/myfeed', name:'myfeed', component:Myfeed, meta: { layout:'DefaultLayout', requireAuth:true }},
     {path:'/register', name:'register', component:Register, meta: { layout:'EmptyLayout' }},
     {path:'/login', name:'login', component:Login, meta: { layout:'EmptyLayout' }},
 ]
