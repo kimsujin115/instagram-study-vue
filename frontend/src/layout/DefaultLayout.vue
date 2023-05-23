@@ -50,9 +50,9 @@
                 </nav>
             </div>
             <div class="etcArea">
-                <button>
-                    <i class="icon fas fa-bars"></i>
-                    <span>더보기</span>
+                <button class="logout" @click="onLogout">
+                    <i class="icon fas fa-arrow-right-from-bracket"></i>
+                    <span>로그아웃</span>
                 </button>
             </div>
         </div>
@@ -69,7 +69,23 @@
 </template>
 
 <script>
-export default {
+import { useRouter } from 'vue-router';
+import store from '../store';
 
+export default {
+    setup() {
+        const router = useRouter();
+
+        const onLogout = () => {
+            store.commit("SET_USER", null);
+            router.push('/login');
+            console.log(store.state.user);
+        }
+        
+        return {
+            router,
+            onLogout,
+        }
+    }
 }
 </script>

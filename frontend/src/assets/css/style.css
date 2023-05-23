@@ -122,9 +122,9 @@ input {
     display: flex;
     align-items: center; }
     .layoutWrap .sideMenu .etcArea button .icon {
-      font-size: 26px; }
+      font-size: 22px; }
     .layoutWrap .sideMenu .etcArea button span {
-      margin-left: 12px;
+      margin-left: 8px;
       font-size: 18px; }
 
 .layoutWrap .contentWrap {
