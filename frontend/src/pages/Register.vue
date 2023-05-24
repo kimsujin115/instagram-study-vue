@@ -60,7 +60,7 @@ export default {
         vaildBool.value = false;
         return;
       }else if (!pwChk.test(password.value) && password.value) { //비밀번호 유효성 체크
-        errText.value = '비밀번호는 숫자를 포함해서 6자 이상 15자 이하로 입력해 주세요.'
+        errText.value = '비밀번호는 6자 이상 15자 이하로 입력해 주세요.'
         vaildBool.value = false;
         return;
       } else {
