@@ -47,20 +47,27 @@ export default {
       const idChk = /^[a-zA-Z0-9\s_.]{5,}$/;
       const pwChk = /^[A-Za-z0-9]{6,15}$/;
 
-      if (!emailChk.test(email.value) && email.value.length > 0) { //이메일 유효성 체크
+      if (!emailChk.test(email.value) && email.value ) { //이메일 유효성 체크
         errText.value = '이메일 형식에 맞게 입력해 주세요.'
+        vaildBool.value = false;
         return;
-      } else if (!nameChk.test(username.value) && username.value.length > 0) { //이름 유효성 체크
+      } else if (!nameChk.test(username.value) && username.value) { //이름 유효성 체크
         errText.value = '올바른 형식이 아닙니다. 성명은 2자 이상 입력해 주세요.'
+        vaildBool.value = false;
         return;
-      } else if (!idChk.test(userid.value) && userid.value.length > 0) { // 아이디 유효성 체크
+      } else if (!idChk.test(userid.value) && userid.value) { // 아이디 유효성 체크
         errText.value = '아이디는 5자 이상 입력해 주세요. 특수문자는 .과 _ 만 사용 가능합니다.'
-      }else if (!pwChk.test(password.value) && password.value.length > 0) { //비밀번호 유효성 체크
-        errText.value = '비밀번호는 숫자를 포함해서 6자 이상 15자 이하로 입력해 주세요.'
+        vaildBool.value = false;
         return;
-      } else if (userid.value != '' && username.value != '' && email.value != '' && password.value != ''){
+      }else if (!pwChk.test(password.value) && password.value) { //비밀번호 유효성 체크
+        errText.value = '비밀번호는 숫자를 포함해서 6자 이상 15자 이하로 입력해 주세요.'
+        vaildBool.value = false;
+        return;
+      } else {
         errText.value = '';
-        vaildBool.value = true;
+        if (email.value && username.value && userid.value && password.value) {
+          vaildBool.value = true;
+        }
       }
     })
 
