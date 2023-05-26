@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
 
@@ -41,7 +41,7 @@ export default {
     const errText = ref('');
 
     //유효성 체크
-    const setVaildCheck = watch(() => {
+    const setVaildCheck = watchEffect(() => {
       const emailChk = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       const nameChk = /^[가-힣a-zA-Z]{2,20}$/;
       const idChk = /^[a-zA-Z0-9\s_.]{5,}$/;

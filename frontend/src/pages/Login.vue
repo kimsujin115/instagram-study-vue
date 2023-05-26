@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue';
+import { ref, watchEffect } from 'vue';
 import axios from 'axios';
 import store from '../store'
 import { useRouter } from 'vue-router';
@@ -36,7 +36,7 @@ export default {
     const errText = ref('');
     const vaildBool = ref(false);
 
-    const setWatch = watch(() => {
+    const setWatch = watchEffect(() => {
       if (userid.value && password.value) {
         vaildBool.value = true;
       } else {
