@@ -33,7 +33,7 @@
                             </router-link>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="javascript:;" @click="showWriteModal = true">
                                 <i class="icon fa-regular fa-square-plus"></i>
                                 <span>만들기</span>
                             </a>
@@ -66,15 +66,22 @@
             </div>
         </div>
     </div>
+
+    <!-- 게시물 등록 팝업 -->
+    <NewWriteModal v-if="showWriteModal" @close-modal="showWriteModal = false"></NewWriteModal>
 </template>
 
 <script>
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import store from '../store';
+import NewWriteModal from '../components/NewWriteModal.vue';
 
 export default {
+    components: { NewWriteModal },
     setup() {
         const router = useRouter();
+        const showWriteModal = ref(false);
 
         const onLogout = () => {
             store.commit("SET_USER", null);
@@ -85,6 +92,7 @@ export default {
         return {
             router,
             onLogout,
+            showWriteModal,
         }
     }
 }
