@@ -14,7 +14,11 @@
       <!-- popCont -->
       <div class="popCont">
         <div class="imgArea">
-          <img src="http://picsum.photos/800" alt="" />
+          <label for="file-image" class="fileUpload">
+            <input type="file" id="file-image">
+            <i class="fas fa-camera"></i>
+          </label>
+          <!-- <img src="http://picsum.photos/800" alt="" /> -->
         </div>
         <div class="writeArea">
           <div class="user">
