@@ -345,7 +345,7 @@ input {
 .newWritePopup {
     position: fixed;
     z-index: 15;
-    &:after {
+    .dim {
         content: '';
         position: fixed;
         width: 100%;

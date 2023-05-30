@@ -258,7 +258,7 @@ input {
 .newWritePopup {
   position: fixed;
   z-index: 15; }
-  .newWritePopup:after {
+  .newWritePopup .dim {
     content: '';
     position: fixed;
     width: 100%;
