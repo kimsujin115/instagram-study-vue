@@ -1,11 +1,11 @@
 <template>
   <div class="newWritePopup">
-    <div class="dim"></div>
+    <div class="dim" @click="$emit('close-modal')"></div>
     <!-- popWrap -->
     <div class="popWrap">
       <!-- popHead -->
       <div class="popHead">
-        <button class="back">
+        <button class="back" @click="$emit('close-modal')">
         <i class="fa-solid fa-arrow-left"></i>
         </button>
         <h3>새 게시물 만들기</h3>
@@ -33,5 +33,11 @@
 
 <script>
 export default {
+  setup() { 
+
+    
+    return {
+    }
+  }
 }
 </script>
