@@ -14,11 +14,11 @@
       <!-- popCont -->
       <div class="popCont">
         <div class="imgArea">
-          <label for="file-image" class="fileUpload">
-            <input type="file" id="file-image">
+          <label for="file-image" class="fileUpload" v-if="!imageFile"> <!-- 이미지 업로드 되지 않았을 경우에 노출 -->
+            <input type="file" id="file-image" accept="image/*" @change="onimageUpload">
             <i class="fas fa-camera"></i>
           </label>
-          <!-- <img src="http://picsum.photos/800" alt="" /> -->
+          <img :src="imageFile" v-if="imageFile" alt=""/> <!-- 이미지 업로드 되었을 경우에만 이미지태그 노출 -->
         </div>
         <div class="writeArea">
           <div class="user">
@@ -36,11 +36,24 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 export default {
   setup() { 
+    const imageFile = ref(null);
+
+    const onimageUpload = (event) => {
+      const file = event.target.files[0];
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        imageFile.value = e.target.result;
+      }
+      reader.readAsDataURL(file)
+    }
 
     
     return {
+      imageFile,
+      onimageUpload,
     }
   }
 }
