@@ -296,8 +296,7 @@ input[type='password'] {
       height: 500px; }
       .newWritePopup .popWrap .popCont .imgArea {
         display: flex;
-        width: 65%;
-        height: 100%;
+        width: 100%;
         justify-content: center;
         align-items: center;
         border-right: 1px solid #e4e4e4; }
@@ -312,10 +311,25 @@ input[type='password'] {
             height: 1px; }
           .newWritePopup .popWrap .popCont .imgArea .fileUpload > i {
             font-size: 50px; }
-        .newWritePopup .popWrap .popCont .imgArea img {
+        .newWritePopup .popWrap .popCont .imgArea .img {
+          position: relative;
+          padding: 30px;
           width: 100%;
-          height: auto;
-          object-fit: cover; }
+          height: 100%; }
+          .newWritePopup .popWrap .popCont .imgArea .img img {
+            position: absolute;
+            max-width: 100%;
+            max-height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover; }
+          .newWritePopup .popWrap .popCont .imgArea .img .btnDel {
+            position: absolute;
+            right: 12px;
+            top: 12px; }
+            .newWritePopup .popWrap .popCont .imgArea .img .btnDel i {
+              font-size: 20px; }
       .newWritePopup .popWrap .popCont .writeArea {
         width: 35%;
         padding: 0 10px; }

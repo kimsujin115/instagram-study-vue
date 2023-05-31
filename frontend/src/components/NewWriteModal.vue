@@ -18,7 +18,12 @@
             <input type="file" id="file-image" accept="image/*" @change="onimageUpload">
             <i class="fas fa-camera"></i>
           </label>
-          <img :src="imageFile" v-if="imageFile" alt=""/> <!-- 이미지 업로드 되었을 경우에만 이미지태그 노출 -->
+          <div class="img" v-if="imageFile"> <!-- 이미지 업로드 되었을 경우에만 이미지태그 노출 -->
+            <img :src="imageFile" alt=""/> 
+            <button class="btnDel" @click="onImageDelete">
+              <i class="fa-solid fa-x"></i>
+            </button>
+          </div>
         </div>
         <div class="writeArea">
           <div class="user">
@@ -41,6 +46,7 @@ export default {
   setup() { 
     const imageFile = ref(null);
 
+    /* 이미지 업로드 */
     const onimageUpload = (event) => {
       const file = event.target.files[0];
       let reader = new FileReader();
@@ -50,10 +56,16 @@ export default {
       reader.readAsDataURL(file)
     }
 
+    /* 업로드된 이미지 삭제 */
+    const onImageDelete = () => {
+      imageFile.value = null
+    }
+
     
     return {
       imageFile,
       onimageUpload,
+      onImageDelete,
     }
   }
 }
