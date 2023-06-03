@@ -15,7 +15,7 @@
       <div class="popCont">
         <div class="imgArea">
           <label for="file-image" class="fileUpload" v-if="!imageFile"> <!-- 이미지 업로드 되지 않았을 경우에 노출 -->
-            <input type="file" id="file-image" accept="image/*" @change="onimageUpload">
+            <input type="file" id="file-image" accept="image/*" @change="onImageUpload">
             <i class="fas fa-camera"></i>
           </label>
           <div class="img" v-if="imageFile"> <!-- 이미지 업로드 되었을 경우에만 이미지태그 노출 -->
@@ -46,8 +46,8 @@ export default {
   setup() { 
     const imageFile = ref(null);
 
-    /* 이미지 업로드 */
-    const onimageUpload = (event) => {
+    /* 이미지 첨부 */
+    const onImageUpload = (event) => {
       const file = event.target.files[0];
       let reader = new FileReader();
       reader.onload = (e) => {
@@ -56,11 +56,10 @@ export default {
       reader.readAsDataURL(file)
     }
 
-    /* 업로드된 이미지 삭제 */
+    /* 첨부된 이미지 삭제 */
     const onImageDelete = () => {
       imageFile.value = null
     }
-
     
     return {
       imageFile,
