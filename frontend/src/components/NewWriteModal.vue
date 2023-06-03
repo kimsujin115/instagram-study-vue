@@ -63,7 +63,7 @@ export default {
     
     return {
       imageFile,
-      onimageUpload,
+      onImageUpload,
       onImageDelete,
     }
   }
