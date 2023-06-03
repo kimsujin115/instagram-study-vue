@@ -1,8 +1,6 @@
 const connection = require('../controllers/dbConnect');
 
 const express = require('express');
-const { format } = require('../controllers/dbConnect');
-const { json } = require('express');
 const router = express.Router();
 
 // /api/users

@@ -9,7 +9,7 @@
         <i class="fa-solid fa-arrow-left"></i>
         </button>
         <h3>새 게시물 만들기</h3>
-        <button class="btnEnroll">공유하기</button>
+        <button class="btnEnroll" @click="onUploadPost">공유하기</button>
       </div>
       <!-- popCont -->
       <div class="popCont">
@@ -31,7 +31,7 @@
             <span>user.id</span>
           </div>
           <div class="textBox">
-            <textarea placeholder="문구 입력..."></textarea>
+            <textarea placeholder="문구 입력..." v-model="postContent"></textarea>
             <p class="length">0/2000</p>
           </div>
         </div>
@@ -42,13 +42,19 @@
 
 <script>
 import { ref } from 'vue'
+import store from '../store';
+import axios from 'axios';
 export default {
   setup() { 
     const imageFile = ref(null);
+    const saveImgFileUrl = ref(null);
+    const postContent = ref('');
+    const currentUser = store.state.user;
 
     /* 이미지 첨부 */
     const onImageUpload = (event) => {
       const file = event.target.files[0];
+      saveImgFileUrl.value = file;
       let reader = new FileReader();
       reader.onload = (e) => {
         imageFile.value = e.target.result;
@@ -60,11 +66,35 @@ export default {
     const onImageDelete = () => {
       imageFile.value = null
     }
+
+    /* 게시물 피드 업로드 */
+    const onUploadPost = async () => {
+      if ( !saveImgFileUrl.value || !postContent.value) {
+        alert('게시물 이미지와 글을 작성해 주세요.');
+        return;
+      } else {
+        await axios.post('/api/newpost', {
+          userid : currentUser,
+          img_url : saveImgFileUrl.value.name,
+          content : postContent.value,
+        })
+        .then( (res) => {
+          console.log(res.data.message)
+        })
+        .catch( () => {
+
+        })
+      }
+    }
     
     return {
       imageFile,
+      saveImgFileUrl,
+      postContent,
+      currentUser,
       onImageUpload,
       onImageDelete,
+      onUploadPost,
     }
   }
 }
