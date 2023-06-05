@@ -45,7 +45,7 @@ import { ref } from 'vue'
 import store from '../store';
 import axios from 'axios';
 export default {
-  setup() { 
+  setup(props, {emit}) { 
     const imageFile = ref(null);
     const saveImgFileUrl = ref(null);
     const postContent = ref('');
@@ -75,11 +75,12 @@ export default {
       } else {
         await axios.post('/api/newpost', {
           userid : currentUser,
-          img_url : saveImgFileUrl.value.name,
+          img_url : saveImgFileUrl.value,
           content : postContent.value,
         })
         .then( (res) => {
-          console.log(res.data.message)
+          console.log(res.data.message);
+          emit('close-modal');
         })
         .catch( () => {
 
