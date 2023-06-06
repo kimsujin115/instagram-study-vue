@@ -50,11 +50,16 @@ export default {
     const saveImgFileUrl = ref(null);
     const postContent = ref('');
     const currentUser = store.state.user;
+    const formData = new FormData();
+    const config = {
+      header: { 'content-type': 'multipart/form-data' },
+    };
 
     /* 이미지 첨부 */
     const onImageUpload = (event) => {
       const file = event.target.files[0];
       saveImgFileUrl.value = file;
+      formData.append("uploadImage", event.target.files[0]);
       let reader = new FileReader();
       reader.onload = (e) => {
         imageFile.value = e.target.result;
@@ -73,18 +78,14 @@ export default {
         alert('게시물 이미지와 글을 작성해 주세요.');
         return;
       } else {
-        await axios.post('/api/newpost', {
-          userid : currentUser,
-          img_url : saveImgFileUrl.value,
-          content : postContent.value,
-        })
+        await axios.post('/api/images', formData, config)
         .then( (res) => {
-          console.log(res.data.message);
+          console.log(res);
           emit('close-modal');
         })
-        .catch( () => {
-
-        })
+        .catch((err) => {
+            console.log('에러메세지 : ', err)
+        });
       }
     }
     
