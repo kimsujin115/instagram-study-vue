@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const multer  = require('multer');
+const { get } = require('.');
 
 const storage = multer.diskStorage({
     //파일저장경로
@@ -10,7 +11,8 @@ const storage = multer.diskStorage({
     },
     //저장되는 파일이름 형식 커스텀 가능
     filename: function (req, file, callback) {
-      callback(null, `${Date.now()}_${file.originalname}`);
+      const today = new Date().toISOString().substring(0,10).replace(/-/g,''); //yyyymmdd 형식
+      callback(null, `${today}_${file.originalname}`);
     },
   });
   

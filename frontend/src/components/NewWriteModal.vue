@@ -78,7 +78,7 @@ export default {
         alert('게시물 이미지와 글을 작성해 주세요.');
         return;
       } else {
-        await axios.post('/api/images', formData, config)
+        await axios.post('/api/newfeed', formData, config)
         .then( (res) => {
           console.log(res);
           emit('close-modal');
