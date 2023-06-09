@@ -78,9 +78,13 @@ export default {
         alert('게시물 이미지와 글을 작성해 주세요.');
         return;
       } else {
+        formData.append("userid", currentUser);
+        formData.append("content", postContent.value);
+        formData.append("num_likes", 0);
+
         await axios.post('/api/newfeed', formData, config)
         .then( (res) => {
-          console.log(res);
+          console.log(res.data.message);
           emit('close-modal');
         })
         .catch((err) => {

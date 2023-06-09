@@ -16,7 +16,6 @@ app.use(express.urlencoded({ limit: '5000mb', extended: true }))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 // const postRouter = require('./routes/post');
