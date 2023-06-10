@@ -19,8 +19,9 @@ const storage = multer.diskStorage({
   
   const upload = multer({ storage: storage }).single('uploadImage');
   
-  router.post('/', upload, (req, res) => {
 
+  /* 새 피드 등록 */
+  router.post('/', upload, (req, res) => {
     // upload(req,res,(err) => {  // 가져온 이미지를 저장
     //   if (err) {
     //     return req.json({ success: false, err });
@@ -42,15 +43,28 @@ const storage = multer.diskStorage({
 
     connection.query(`INSERT INTO post (userid, image_url, content, num_likes, created_at) VALUES ('${post.userid}', '${post.image_url}', '${post.content}', '${post.num_likes}', NOW())`, function(err, row2) {
       if (err) {
-        return req.json({ success: false, err });
+        return res.json({ success: false, err });
       } else {
         return res.json({
-          success: true,
+          success : true,
           message : '새로운 피드 등록 완료!'
         });
       }
     });
 
   });
+
+  /* 등록된 피드 */
+  router.post('/post', (req, res, next) => {
+    connection.query('SELECT * FROM post', function(err, data) {
+      if (err) throw err;
+      res.send({
+        success : true,
+        list : data,
+      });
+    })
+  })
+
+  
   
   module.exports = router;

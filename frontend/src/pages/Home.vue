@@ -10,16 +10,16 @@
     </ul>
     <!-- feedList -->
     <ul class="feedList">
-        <li v-for="feed in 5" :key="feed">
+        <li v-for="post in posts" :key="post">
             <div class="user">
                 <div class="profile active">
                     <img src="http://picsum.photos/100" alt="" />
                 </div>
-                <span class="name">instar.id</span>
+                <span class="name">{{post.userid}}</span>
                 <span class="date">1일</span>
             </div>
             <div class="feedImg">
-                <img src="http://picsum.photos/600" alt="" />
+                <img :src="post.image_url" alt="" />
             </div>
             <div class="utill">
                 <div class="group">
@@ -37,10 +37,10 @@
                     <i class="fa-regular fa-bookmark"></i>
                 </button>
             </div>
-            <p class="like_num">좋아요 111개</p>
+            <p class="like_num">좋아요 {{post.num_likes}}</p>
             <div class="feedText">
-                <span class="writer">instar.id</span>
-                <span class="text">인스타 피드 게시글 내용인스타 피드 게시글 내용인스타 피드 게시글 내용인스타 피드 게시글 내용인스타 피드 게시글 내용인스타 피드 게시글 내용</span>
+                <span class="writer">{{ post.userid }}</span>
+                <span class="text">{{post.content}}</span>
                 <button class="btnMore">...더 보기</button>
             </div>
         </li>
@@ -48,7 +48,27 @@
 </template>
 
 <script>
-export default {
+import axios from 'axios';
+import { onBeforeMount, ref } from 'vue';
 
+export default {
+    setup() {
+        const posts = ref([]);
+
+        onBeforeMount( async () => {
+            await axios.post('/api/feed/post')
+            .then((res) => { 
+                //console.log(res)
+                posts.value = res.data.list
+            })
+            .catch((err) => {
+                console.log('에러메세지 : ', err)
+            });
+        }) 
+
+        return {
+            posts
+        }
+    }
 }
 </script>
