@@ -82,7 +82,7 @@ export default {
         formData.append("content", postContent.value);
         formData.append("num_likes", 0);
 
-        await axios.post('/api/newfeed', formData, config)
+        await axios.post('/api/feed', formData, config)
         .then( (res) => {
           console.log(res.data.message);
           emit('close-modal');
