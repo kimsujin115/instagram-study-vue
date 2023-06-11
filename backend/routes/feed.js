@@ -36,7 +36,7 @@ const storage = multer.diskStorage({
 
     const post = {
       'userid' : req.body.userid,
-      'image_url' : req.file.filename,
+      'image_url' : 'images/feed/' + req.file.filename,
       'content' : req.body.content,
       'num_likes' : req.body.num_likes,
     }
@@ -56,11 +56,11 @@ const storage = multer.diskStorage({
 
   /* 등록된 피드 */
   router.post('/post', (req, res, next) => {
-    connection.query('SELECT * FROM post', function(err, data) {
+    connection.query('SELECT * FROM post', function(err, postlist) {
       if (err) throw err;
       res.send({
         success : true,
-        list : data,
+        list : postlist,
       });
     })
   })

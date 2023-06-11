@@ -19,7 +19,7 @@
                 <span class="date">1일</span>
             </div>
             <div class="feedImg">
-                <img :src="post.image_url" alt="" />
+                <img :src="`http://localhost:3000/${post.image_url}`" alt="" />
             </div>
             <div class="utill">
                 <div class="group">
