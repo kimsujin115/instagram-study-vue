@@ -40,17 +40,22 @@ const storage = multer.diskStorage({
       'content' : req.body.content,
       'num_likes' : req.body.num_likes,
     }
-
-    connection.query(`INSERT INTO post (userid, image_url, content, num_likes, created_at) VALUES ('${post.userid}', '${post.image_url}', '${post.content}', '${post.num_likes}', NOW())`, (err, row2) => {
-      if (err) {
-        return res.json({ success: false, err });
-      } else {
-        return res.json({
-          success : true,
-          message : '새로운 피드 등록 완료!'
-        });
+    connection.query(`SELECT * FROM post`, (err,row) => {
+      if(row[0] == undefined) { //등록된 피드가 없을 경우 AUTO_INCREMENT 초기화
+        connection.query(`ALTER TABLE post AUTO_INCREMENT=1`)
       }
-    });
+
+      connection.query(`INSERT INTO post (userid, image_url, content, num_likes, created_at) VALUES ('${post.userid}', '${post.image_url}', '${post.content}', '${post.num_likes}', NOW())`, (err, row2) => {
+        if (err) {
+          return res.json({ success: false, err });
+        } else {
+          return res.json({
+            success : true,
+            message : '새로운 피드 등록 완료!'
+          });
+        }
+      });
+    })
 
   });
 
