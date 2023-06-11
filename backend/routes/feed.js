@@ -41,7 +41,7 @@ const storage = multer.diskStorage({
       'num_likes' : req.body.num_likes,
     }
 
-    connection.query(`INSERT INTO post (userid, image_url, content, num_likes, created_at) VALUES ('${post.userid}', '${post.image_url}', '${post.content}', '${post.num_likes}', NOW())`, function(err, row2) {
+    connection.query(`INSERT INTO post (userid, image_url, content, num_likes, created_at) VALUES ('${post.userid}', '${post.image_url}', '${post.content}', '${post.num_likes}', NOW())`, (err, row2) => {
       if (err) {
         return res.json({ success: false, err });
       } else {
@@ -56,7 +56,7 @@ const storage = multer.diskStorage({
 
   /* 등록된 피드 */
   router.post('/post', (req, res, next) => {
-    connection.query('SELECT * FROM post', function(err, postlist) {
+    connection.query('SELECT * FROM post', (err, postlist) => {
       if (err) throw err;
       res.send({
         success : true,
