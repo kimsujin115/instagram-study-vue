@@ -36,7 +36,7 @@ const storage = multer.diskStorage({
 
     const post = {
       'userid' : req.body.userid,
-      'image_url' : 'images/feed/' + req.file.filename,
+      'image_url' : 'images/feed/' + req.file.filename, //이미지 파일경로 지정
       'content' : req.body.content,
       'num_likes' : req.body.num_likes,
     }
@@ -45,6 +45,7 @@ const storage = multer.diskStorage({
         connection.query(`ALTER TABLE post AUTO_INCREMENT=1`)
       }
 
+      //피드 추가등록
       connection.query(`INSERT INTO post (userid, image_url, content, num_likes, created_at) VALUES ('${post.userid}', '${post.image_url}', '${post.content}', '${post.num_likes}', NOW())`, (err, row2) => {
         if (err) {
           return res.json({ success: false, err });
