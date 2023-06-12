@@ -29,6 +29,7 @@
 import { ref, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
+import store from '../store';
 
 export default {
   setup() { 
@@ -83,11 +84,11 @@ export default {
           username : username.value,
           email : email.value,
           password : password.value,
-          profile_img : '../assets/images/img_profile.png'
+          profile_img : 'img_profile.jpg'
         })
         .then((res) => {
           if (res.data.success == true) { //가입성공
-            alert(res.data.message)
+            alert(res.data.message);
             router.push('/login'); 
           } else { //가입실패
             errText.value = res.data.message

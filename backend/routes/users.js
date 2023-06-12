@@ -46,15 +46,16 @@ router.post('/login', (req, res, next) => {
     'password' : req.body.password,
   };
 
-  connection.query(`SELECT userid, password FROM users WHERE userid = '${user.userid}'`, function(err, row) {
+  connection.query(`SELECT * FROM users WHERE userid = '${user.userid}'`, function(err, row) {
     if (err) throw err;
     
     if ( row[0] !== undefined && row[0].userid == user.userid) { //사용자 아이디가 일치하는지 확인
       if ( row[0].password == user.password ) { //비밀번호가 일치하는지 확인
         res.json({
           success : true,
-          message : '로그인 성공'
-        })
+          message : '로그인 성공',
+          user : row[0],
+        });
       } else {
         res.json({
           success : false,

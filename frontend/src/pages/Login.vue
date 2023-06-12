@@ -57,7 +57,7 @@ export default {
         .then((res) => {
           if(res.data.success == true){ //로그인 성공
             alert(res.data.message)
-            store.commit("SET_USER", userid) //store에 userid 저장
+            store.commit("SET_USER", res.data.user) //store에 현재 유저정보 저장
             console.log(store.state.user)
 
             router.replace('/');

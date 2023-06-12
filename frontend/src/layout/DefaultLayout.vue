@@ -41,7 +41,7 @@
                         <li>
                             <router-link to="/myfeed">
                                 <div class="profile">
-                                    <img src="http://picsum.photos/100" alt="">
+                                    <img :src="`${currentUser.profile_img}`" :alt="`${currentUser.userid}의 프로필`">
                                 </div>
                                 <span>프로필</span>
                             </router-link>
@@ -82,6 +82,7 @@ export default {
     setup() {
         const router = useRouter();
         const showWriteModal = ref(false);
+        const currentUser = store.state.user;
 
         const onLogout = () => {
             store.commit("SET_USER", null);
@@ -93,6 +94,7 @@ export default {
             router,
             onLogout,
             showWriteModal,
+            currentUser,
         }
     }
 }
