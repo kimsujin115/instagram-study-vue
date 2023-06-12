@@ -41,7 +41,7 @@
                         <li>
                             <router-link to="/myfeed">
                                 <div class="profile">
-                                    <img :src="`${currentUser.profile_img}`" :alt="`${currentUser.userid}의 프로필`">
+                                    <img :src="currentUser.profile_img" :alt="`${currentUser.userid}의 프로필`">
                                 </div>
                                 <span>프로필</span>
                             </router-link>

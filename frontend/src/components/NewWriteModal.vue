@@ -27,8 +27,8 @@
         </div>
         <div class="writeArea">
           <div class="user">
-            <img src="http://picsum.photos/300" alt="">
-            <span>{{currentUser}}</span>
+            <img :src="currentUser.profile_img" alt="">
+            <span>{{currentUser.userid}}</span>
           </div>
           <div class="textBox">
             <textarea placeholder="문구 입력..." v-model="postContent"></textarea>
