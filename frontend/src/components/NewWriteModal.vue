@@ -78,7 +78,7 @@ export default {
         alert('게시물 이미지와 글을 작성해 주세요.');
         return;
       } else {
-        formData.append("userid", currentUser);
+        formData.append("userid", currentUser.userid);
         formData.append("content", postContent.value);
         formData.append("num_likes", 0);
 
