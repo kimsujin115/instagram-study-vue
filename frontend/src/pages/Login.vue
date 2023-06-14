@@ -7,7 +7,7 @@
         </div>
         <div class="fieldSet">
           <input type="text" placeholder="사용자 이름(ID)" v-model="userid">
-          <input type="password" placeholder="비밀번호" v-model="password">
+          <input type="password" placeholder="비밀번호" v-model="password" @keyup.enter="onLogin">
           <p class="error" v-if="errText">{{errText}}</p>
           <button :class="`btn ${vaildBool ? 'active' : ''}`" @click="onLogin">로그인</button>
         </div>
