@@ -16,7 +16,7 @@
                     <img src="http://picsum.photos/100" alt="" />
                 </div>
                 <span class="name">{{post.userid}}</span>
-                <span class="date">1일</span>
+                <span class="date">{{ moment(post.created_at).fromNow() }}</span>
             </div>
             <div class="feedImg">
                 <img :src="`http://localhost:3000/${post.image_url}`" alt="" />
@@ -50,6 +50,8 @@
 <script>
 import axios from 'axios';
 import { onBeforeMount, ref } from 'vue';
+import moment from 'moment'
+import 'moment/locale/ko'  // 1분전, 1시간전, 하루전 이렇게 한글로 노출되게
 
 export default {
     setup() {
@@ -67,7 +69,8 @@ export default {
         }) 
 
         return {
-            posts
+            posts,
+            moment,
         }
     }
 }
