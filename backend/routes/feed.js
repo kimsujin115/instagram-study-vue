@@ -62,7 +62,7 @@ const storage = multer.diskStorage({
 
   /* 등록된 피드 */
   router.post('/post', (req, res, next) => {
-    connection.query('SELECT * FROM post', (err, postlist) => {
+    connection.query('SELECT * FROM post ORDER BY created_at DESC', (err, postlist) => {
       if (err) throw err;
       res.send({
         success : true,
