@@ -58,7 +58,7 @@ export default {
         const posts = ref([]);
 
         onBeforeMount( async () => {
-            await axios.post('/api/feed/post')
+            await axios.get('/api/feed/post')
             .then((res) => { 
                 //console.log(res)
                 posts.value = res.data.list
