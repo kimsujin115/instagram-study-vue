@@ -44,6 +44,8 @@
 import { ref } from 'vue'
 import store from '../store';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
+
 export default {
   setup(props, {emit}) { 
     const imageFile = ref(null);
@@ -54,6 +56,7 @@ export default {
     const config = {
       header: { 'content-type': 'multipart/form-data' },
     };
+    const router = useRouter();
 
     /* 이미지 첨부 */
     const onImageUpload = (event) => {
@@ -86,6 +89,11 @@ export default {
         .then( (res) => {
           console.log(res.data.message);
           emit('close-modal');
+
+          if ( router.currentRoute._value.fullPath == '/')  { //홈에서 새 피드 등록 후 새로고침
+            router.go();
+          }
+
         })
         .catch((err) => {
             console.log('에러메세지 : ', err)
@@ -101,6 +109,7 @@ export default {
       onImageUpload,
       onImageDelete,
       onUploadPost,
+      router,
     }
   }
 }
