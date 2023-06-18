@@ -416,7 +416,11 @@ input[type='password'] {
     height: 170px; }
     .mypageWrap .myfeed ul li:nth-child(3n+1) {
       margin-left: 0; }
-    .mypageWrap .myfeed ul li img {
+    .mypageWrap .myfeed ul li a {
+      display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover; }
+      height: 100%; }
+      .mypageWrap .myfeed ul li a img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; }
