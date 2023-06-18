@@ -89,10 +89,10 @@ export default {
         .then( (res) => {
           console.log(res.data.message);
           emit('close-modal');
-
-          if ( router.currentRoute._value.fullPath == '/')  { //홈에서 새 피드 등록 후 새로고침
-            router.go();
-          }
+          router.go();
+          // if ( router.currentRoute._value.fullPath == '/')  { //홈에서 새 피드 등록 후 새로고침
+          //   router.go();
+          // }
 
         })
         .catch((err) => {
