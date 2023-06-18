@@ -360,3 +360,63 @@ input[type='password'] {
           text-align: right;
           font-size: 14px;
           color: #ddd; }
+
+/* my profile */
+.mypageWrap .profile {
+  display: flex;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #ddd; }
+  .mypageWrap .profile .img {
+    overflow: hidden;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; }
+    .mypageWrap .profile .img img {
+      width: 100%;
+      object-fit: cover; }
+  .mypageWrap .profile .myinfo {
+    margin-left: 30px; }
+    .mypageWrap .profile .myinfo .user .userid {
+      font-size: 20px;
+      font-weight: bold; }
+    .mypageWrap .profile .myinfo .user button {
+      margin-left: 15px;
+      padding: 8px 12px;
+      font-size: 18px;
+      border-radius: 5px;
+      background-color: #ededed; }
+    .mypageWrap .profile .myinfo .nums {
+      margin-top: 15px;
+      display: flex; }
+      .mypageWrap .profile .myinfo .nums > span {
+        font-size: 16px; }
+        .mypageWrap .profile .myinfo .nums > span + span {
+          margin-left: 20px; }
+        .mypageWrap .profile .myinfo .nums > span em {
+          margin-left: 10px;
+          font-weight: bold;
+          font-style: normal; }
+    .mypageWrap .profile .myinfo .name {
+      margin-top: 10px;
+      font-size: 14px; }
+
+.mypageWrap .myfeed ul {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-wrap: wrap; }
+  .mypageWrap .myfeed ul li {
+    overflow: hidden;
+    margin: 0 0 12px 12px;
+    width: 170px;
+    height: 170px; }
+    .mypageWrap .myfeed ul li:nth-child(3n+1) {
+      margin-left: 0; }
+    .mypageWrap .myfeed ul li img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }

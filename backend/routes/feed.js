@@ -71,6 +71,18 @@ const storage = multer.diskStorage({
     })
   })
 
-  
+  /* 내가 등록한 피드 불러오기 */
+  router.post('/myfeed', (req, res, next) => {
+    const user = {
+      'userid' : req.body.userid,
+    };
+    connection.query(`SELECT * FROM post WHERE userid = '${user.userid}' ORDER BY created_at DESC `, (err, feed) => {
+      if (err) throw err;
+      res.send({
+        success : true,
+        myfeed : feed,
+      });
+    })
+  })
   
   module.exports = router;

@@ -472,3 +472,83 @@ input[type='password'] {
     }
     
 }
+
+/* my profile */
+.mypageWrap {
+    .profile {
+        display: flex;
+        padding-bottom:30px;
+        margin-bottom:30px;
+        width:100%;
+        justify-content: center;
+        align-items: center;
+        border-bottom:1px solid #ddd;
+        .img {
+            overflow:hidden;
+            width:120px;
+            height:120px;
+            border-radius: 50%;
+            img {
+                width:100%;
+                object-fit: cover;
+            }
+        }
+        .myinfo {
+            margin-left:30px;
+            .user {
+                .userid {
+                    font-size:20px;
+                    font-weight: bold;
+                }
+                button {
+                    margin-left:15px;
+                    padding:8px 12px;
+                    font-size:18px;
+                    border-radius: 5px;
+                    background-color: #ededed;
+                }
+            }
+            .nums {
+                margin-top:15px;
+                display: flex;
+                > span {
+                    font-size:16px;
+                    & + span {
+                        margin-left:20px;
+                    }
+                    em {
+                        margin-left:10px;
+                        font-weight: bold;
+                        font-style: normal;
+                    }
+                }
+            }
+            .name {
+                margin-top:10px;
+                font-size:14px;
+            }
+        }
+    }
+    .myfeed {
+        ul {
+            display: flex;
+            width:100%;
+            align-items: center;
+            flex-wrap: wrap;
+            li {
+                overflow:hidden;
+                margin:0 0 12px 12px;
+                width:170px;
+                height:170px;
+                &:nth-child(3n+1) {
+                    margin-left:0;
+                }
+                img {
+                    width:100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}
