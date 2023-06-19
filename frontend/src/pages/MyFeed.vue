@@ -35,17 +35,17 @@
 
 <script>
 import axios from 'axios';
-import { onBeforeMount, ref } from 'vue';
+import { onBeforeMount, computed, ref } from 'vue';
 import store from '../store'
 
 export default {
   setup() {
-    const currentUser = store.state.user;
+    const currentUser = computed(() => store.state.user);
     const feeds = ref([]);
 
     onBeforeMount( async () => {
         await axios.post('/api/feed/myfeed', {
-          userid : currentUser.userid,
+          userid : currentUser.value.userid,
         })
         .then((res) => { 
             //console.log(res)

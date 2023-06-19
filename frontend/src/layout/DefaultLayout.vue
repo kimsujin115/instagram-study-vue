@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed} from 'vue';
 import { useRouter } from 'vue-router';
 import store from '../store';
 import NewWriteModal from '../components/NewWriteModal.vue';
@@ -82,7 +82,7 @@ export default {
     setup() {
         const router = useRouter();
         const showWriteModal = ref(false);
-        const currentUser = store.state.user;
+        const currentUser = computed(() => store.state.user);
 
         const onLogout = () => {
             store.commit("SET_USER", null);
