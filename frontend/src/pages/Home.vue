@@ -12,10 +12,12 @@
     <ul class="feedList">
         <li v-for="post in posts" :key="post">
             <div class="user">
-                <div class="profile active">
-                    <img src="http://picsum.photos/100" alt="" />
-                </div>
-                <span class="name">{{post.userid}}</span>
+                <router-link :to="`/profile/${post.userid}`">
+                    <div class="profile active">
+                        <img src="http://picsum.photos/100" alt="" />
+                    </div>
+                    <span class="name">{{post.userid}}</span>
+                </router-link>
                 <span class="date">{{ moment(post.created_at).fromNow() }}</span>
             </div>
             <div class="feedImg">

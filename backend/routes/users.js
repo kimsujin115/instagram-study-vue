@@ -6,10 +6,16 @@ const router = express.Router();
 // /api/users
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
-  connection.query('SELECT * FROM users', (err, rows) => {
+router.post('/', (req, res, next) => {
+  const user = {
+    'userid' : req.body.userid
+  };
+  connection.query(`SELECT * FROM users WHERE userid = '${user.userid}'`, (err, rows) => {
     if (err) throw err;
-    res.send(rows);
+    res.send({
+      success : true,
+      userid : rows[0],
+    });
   });
 });
 
