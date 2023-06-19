@@ -39,7 +39,7 @@
                             </a>
                         </li>
                         <li>
-                            <router-link to="/myfeed">
+                            <router-link to="/profile">
                                 <div class="profile">
                                     <img :src="currentUser.profile_img" :alt="`${currentUser.userid}의 프로필`">
                                 </div>
