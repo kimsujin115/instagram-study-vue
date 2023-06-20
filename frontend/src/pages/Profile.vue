@@ -46,13 +46,13 @@ export default {
     const feeds = ref([]);
     const route = useRoute();
 
-    console.log('profileUser', profileUser)
+    //console.log('profileUser', profileUser)
 
     onBeforeMount( async () => {
       const profileUID = route.params.userid ?? currentUser.value.userid; //params값이 null이면 현재 로그인 된 유저
-      console.log(profileUID)
+      // console.log('profileUID : ', route.params.userid)
 
-      /* 해당 프로필 유저 가져오기 */
+      /* 프로필 유저 가져오기 */
       await axios.post('/api/users', {
         userid : profileUID,
       })
@@ -64,14 +64,14 @@ export default {
           console.log('에러메세지 : ', err)
       });
 
-      /* 피드 불러오기 */
+      /* 해당 유저의 피드 불러오기 */
       await axios.post('/api/feed/profile', {
         userid : profileUID,
       })
       .then((res) => { 
           //console.log(res)
           feeds.value = res.data.profile;
-          console.log(feeds.value)
+          //console.log(feeds.value)
       })
       .catch((err) => {
           console.log('에러메세지 : ', err)

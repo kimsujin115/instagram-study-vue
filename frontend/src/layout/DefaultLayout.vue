@@ -62,7 +62,8 @@
             <!-- innerCont -->
             <div class="innerCont">
                 <!-- content router-view -->
-                <router-view></router-view>
+                <!-- :key="route.fullPath" 같은 path(같은 컴포넌트) 호출 할 떄 리로드 시킴. 즉, 현재 페이지 갱신 시킴 -->
+                <router-view :key="route.fullPath"></router-view> 
             </div>
         </div>
     </div>
@@ -73,7 +74,7 @@
 
 <script>
 import { ref, computed} from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import store from '../store';
 import NewWriteModal from '../components/NewWriteModal.vue';
 
@@ -81,6 +82,7 @@ export default {
     components: { NewWriteModal },
     setup() {
         const router = useRouter();
+        const route = useRoute();
         const showWriteModal = ref(false);
         const currentUser = computed(() => store.state.user);
 
@@ -92,6 +94,7 @@ export default {
         
         return {
             router,
+            route,
             onLogout,
             showWriteModal,
             currentUser,
