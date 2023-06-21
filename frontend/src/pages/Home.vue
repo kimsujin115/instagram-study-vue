@@ -14,7 +14,7 @@
             <div class="user">
                 <router-link :to="`/profile/${post.userid}`">
                     <div class="profile active">
-                        <img :src="`${postUser[idx]}`" alt="" />
+                        <img :src="`${postProfile[idx]}`" alt="" />
                     </div>
                     <span class="name">{{post.userid}}</span>
                 </router-link>
@@ -58,7 +58,7 @@ import 'moment/locale/ko'  // 1분전, 1시간전, 하루전 이렇게 한글로
 export default {
     setup() {
         const posts = ref([]); //게시글
-        const postUser = ref([]); //게시글의 유저정보
+        const postProfile = ref([]); //게시글의 유저 프로필
 
         onBeforeMount( async () => {
             await axios.get('/api/feed/post')
@@ -79,7 +79,7 @@ export default {
                     userid : posts.value[i].userid,
                 })
                 .then((user) => {
-                    postUser.value.push(user.data.userid.profile_img)
+                    postProfile.value.push(user.data.userid.profile_img)
                 })
                 .catch((err) => {
                     console.log('게시글 유저 정보 에러메시지 :', err)
@@ -89,7 +89,7 @@ export default {
 
         return {
             posts,
-            postUser,
+            postProfile,
             resultPostUser,
             moment,
         }
