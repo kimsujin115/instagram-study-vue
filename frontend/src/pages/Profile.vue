@@ -12,7 +12,7 @@
           <button>프로필 편집</button>
         </div>
         <div class="nums">
-          <span>게시글<em>100</em></span>
+          <span>게시글<em>{{feeds.length}}</em></span>
           <span>팔로워<em>10</em></span>
           <span>팔로우<em>10</em></span>
         </div>
