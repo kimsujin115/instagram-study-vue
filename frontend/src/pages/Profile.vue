@@ -9,7 +9,7 @@
       <div class="myinfo">
         <div class="user">
           <span class="userid">{{ profileUser.userid }}</span>
-          <button>프로필 편집</button>
+          <router-link to="/edit" class="btnEdit">프로필 편집</router-link>
         </div>
         <div class="nums">
           <span>게시글<em>{{feeds.length}}</em></span>

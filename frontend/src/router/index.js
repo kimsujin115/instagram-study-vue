@@ -4,6 +4,7 @@ import Login from '../pages/Login.vue'
 import Home from '../pages/Home.vue'
 import Notifications from '../pages/Notifications.vue'
 import Profile from '../pages/Profile.vue'
+import Edit from '../pages/Edit.vue'
 import store from '../store'
 
 const routes = [
@@ -11,6 +12,7 @@ const routes = [
     {path:'/notifications', name:'notification', component:Notifications, meta: { layout:'DefaultLayout', requireAuth:true }},
     {path:'/profile', name:'profile', component:Profile, meta: { layout:'DefaultLayout', requireAuth:true }},
     {path:'/profile/:userid', component:Profile, meta: { layout:'DefaultLayout', requireAuth:true }},
+    {path:'/edit', name:'edit', component:Edit, meta: { layout:'DefaultLayout', requireAuth:true }},
     {path:'/register', name:'register', component:Register, meta: { layout:'EmptyLayout' }},
     {path:'/login', name:'login', component:Login, meta: { layout:'EmptyLayout' }},
 ]

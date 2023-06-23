@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const feedRouter = require('./routes/feed');
+const profileRouter = require('./routes/profile');
 
 app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
@@ -27,6 +28,7 @@ app.use('/api/users/login', usersRouter);
 app.use('/api/feed', feedRouter);
 app.use('/api/feed/post', feedRouter);
 app.use('/api/feed/profile', feedRouter);
+app.use('/api/profile', profileRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
