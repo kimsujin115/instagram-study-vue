@@ -34,6 +34,13 @@ input[type='password'] {
     background:#fff;
 }
 
+.pageTit {
+    padding-bottom:50px;
+    margin-bottom:50px;
+    font-size:24px;
+    border-bottom: 1px solid #ddd;
+}
+
 /* login & register */
 .loginWrap, .registerWrap {
     display: flex;
@@ -504,7 +511,7 @@ input[type='password'] {
                     font-size:20px;
                     font-weight: bold;
                 }
-                button {
+                .btnEdit {
                     margin-left:15px;
                     padding:8px 12px;
                     font-size:18px;
@@ -558,6 +565,92 @@ input[type='password'] {
                     }
                 }
             }
+        }
+    }
+}
+
+/* 프로필 편집 */
+.editWrap {
+    .row {
+        display: flex;
+        align-items : flex-start;
+        margin-bottom:30px;
+        .tit {
+            width:100px;
+            font-size:18px;
+            font-style: normal;
+            font-weight: bold;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            .img {
+                overflow: hidden;
+                width:60px;
+                height:60px;
+                border-radius: 50%;
+                img {
+                    width:100%;
+                    height:100%;
+                    object-fit: cover;
+                }
+            }
+            .user {
+                margin-left:18px;
+                .uid {
+                    margin-bottom:2px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    color:#000;
+                }
+                .profleChange {
+                    position: relative;
+                    cursor: pointer;
+                    input {
+                        position: absolute;
+                        top:-1px;
+                        left:-1px;
+                        width:1px;
+                        height:1px;
+                    }
+                    span {
+                        font-size: 16px;
+                        color:#0095f6;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+        .intro {
+            textarea {
+                padding: 15px 10px;
+                width:400px;
+                height:150px;
+                border-radius: 5px;
+                border:1px solid #ccc;
+                resize: none;
+                &::placeholder {
+                    font-size:14px;
+                }
+            }
+            .numchk {
+                margin-top:10px;
+                font-size:14px;
+                color:#888;
+            }
+        }
+    }
+    .btnComplete {
+        padding:10px;
+        width:80px;
+        font-size:16px;
+        color:#fff;
+        border-radius: 10px;
+        opacity: 0.5;
+        background-color: #0095f6;
+        transition: 0.3s;
+        &.active {
+            opacity: 1;
         }
     }
 }
