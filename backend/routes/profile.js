@@ -5,15 +5,18 @@ const router = express.Router();
 
 const multer  = require('multer');
 const fs = require('fs');
+const fsExtra = require('fs-extra');
 
 const storage = multer.diskStorage({
     //파일저장경로
     destination: function (req, file, callback) {
         const userid = req.body.userid;
-
         //유저의 프로필 저장하는 폴더 없을 경우 폴더 생성
         if (!fs.existsSync(`public/images/profile/${userid}`)) { 
             fs.mkdirSync(`public/images/profile/${userid}`)
+        } else {
+            //유저의 프로필 사진은 1개만 저장 할 수 있으므로, 변경할때 기존꺼는 삭제하기
+            fsExtra.emptyDirSync(`public/images/profile/${userid}/`)
         }
 
         callback(null, `public/images/profile/${userid}/`);
