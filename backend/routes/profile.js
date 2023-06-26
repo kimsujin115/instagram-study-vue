@@ -14,14 +14,23 @@ const storage = multer.diskStorage({
         //유저의 프로필 저장하는 폴더 없을 경우 폴더 생성
         if (!fs.existsSync(`public/images/profile/${userid}`)) { 
             fs.mkdirSync(`public/images/profile/${userid}`)
-        } 
-       
-        fsExtra.emptyDirSync(`public/images/profile/${userid}/`);  //유저의 프로필 사진은 1개만 저장 할 수 있으므로, 변경할때 기존꺼는 삭제하기
+        }
+        
         callback(null, `public/images/profile/${userid}/`);
+        
     },
     //저장되는 파일이름 형식 커스텀 가능
     filename: function (req, file, callback) {
-      callback(null, `${file.originalname}`);
+        const userid = req.body.userid;
+        const imgfile = fs.readdirSync(`public/images/profile/${userid}/`)
+        //console.log(imgfile.length)
+         //유저의 프로필 사진은 1개만 저장 할 수 있으므로, 변경할때 기존꺼는 삭제하기
+        if (imgfile.length > 0) {
+            imgfile.forEach((num) => {
+                fs.unlinkSync(`public/images/profile/${userid}/${num}`)
+            })
+        }
+        callback(null, `${file.originalname}`);
     },
   });
   
