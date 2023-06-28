@@ -61,29 +61,31 @@ export default {
         const postProfile = ref([]); //게시글의 유저 프로필
 
         onBeforeMount( async () => {
-            await axios.get('/api/feed/post')
-            .then((res) => { 
-                //console.log(res)
-                posts.value = res.data.list;
-                resultPostUser();
-            })
-            .catch((err) => {
+            try {
+                await axios.get('/api/feed/post')
+                .then((res) => { 
+                    //console.log(res)
+                    posts.value = res.data.list;
+                    resultPostUser();
+                })
+            }catch(err) {
                 console.log('에러메세지 : ', err)
-            });
-        }) 
+            }
+        });
 
         /* 해당 게시글의 유저 정보 가져오기 */
         const resultPostUser = async () => {
             for (let i=0; i < posts.value.length; i++) {
-                await axios.post('/api/users', {
-                    userid : posts.value[i].userid,
-                })
-                .then((user) => {
-                    postProfile.value.push(user.data.userid.profile_img)
-                })
-                .catch((err) => {
+               try {
+                    await axios.post('/api/users', {
+                        userid : posts.value[i].userid,
+                    })
+                    .then((user) => {
+                        postProfile.value.push(user.data.userid.profile_img)
+                    })
+               } catch(err) {
                     console.log('게시글 유저 정보 에러메시지 :', err)
-                })
+                }
             }
         }
 

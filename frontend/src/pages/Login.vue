@@ -50,25 +50,27 @@ export default {
         errText.value = '아이디, 비밀번호를 입력해 주세요.'
         return;
       } else {
-        await axios.post('/api/users/login', {
-          userid : userid.value,
-          password  : password.value
-        })
-        .then((res) => {
-          if(res.data.success == true){ //로그인 성공
-            alert(res.data.message)
-            store.commit("SET_USER", res.data.user) //store에 현재 유저정보 저장
-            console.log(store.state.user)
+        try {
+          await axios.post('/api/users/login', {
+            userid : userid.value,
+            password  : password.value
+          })
+          .then((res) => {
+            if(res.data.success == true){ //로그인 성공
+              alert(res.data.message)
+              store.commit("SET_USER", res.data.user) //store에 현재 유저정보 저장
+              console.log(store.state.user)
 
-            router.replace('/');
-          } else {
-            errText.value = res.data.message
-            //alert(res.data.message)
-          }
-        })
-        .catch((err) => {
+              router.replace('/');
+            } else {
+              errText.value = res.data.message
+              //alert(res.data.message)
+            }
+          })
+        } catch(err) {
           console.log('에러메세지 : ', err)
-        })
+        }
+        
       }
       
     }

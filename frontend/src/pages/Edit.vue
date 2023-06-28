@@ -50,19 +50,19 @@ export default{
             profile_img.value = file;
 
             if (profile_img.value) {
-                formData.append("userid", currentUser.value.userid);
-                formData.append("uploadProfile", event.target.files[0]);
+                try {
+                    formData.append("userid", currentUser.value.userid);
+                    formData.append("uploadProfile", event.target.files[0]);
 
-                await axios.post('/api/profile', formData, config)
-                .then((res) => {
-                    console.log(res.data.message)
-                    console.log(res.data.profile); // profile_img : profile 이미지 주소 객체 형태로 노출
-                    store.commit("SET_PROFILE", res.data.profile.profile_img);
-                    //console.log(currentUser.value.profile_img)
-                })
-                .catch((err) => {
+                    await axios.post('/api/profile', formData, config)
+                    .then((res) => {
+                        console.log(res.data.message)
+                        console.log(res.data.profile); // profile_img : profile 이미지 주소 객체 형태로 노출
+                        store.commit("SET_PROFILE", res.data.profile.profile_img);
+                    })
+                } catch(err) {
                     console.log('에러메세지 : ', err);
-                })
+                }
             }
         }
 

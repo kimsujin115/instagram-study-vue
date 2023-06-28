@@ -53,29 +53,31 @@ export default {
       // console.log('profileUID : ', route.params.userid)
 
       /* 프로필 유저 가져오기 */
-      await axios.post('/api/users', {
-        userid : profileUID,
-      })
-      .then((res) => { 
-          //console.log(res)
-          profileUser.value = res.data.userid;
-      })
-      .catch((err) => {
+      try {
+        await axios.post('/api/users', {
+          userid : profileUID,
+        })
+        .then((res) => { 
+            //console.log(res)
+            profileUser.value = res.data.userid;
+        })
+      } catch(err) {
           console.log('에러메세지 : ', err)
-      });
+      }
 
       /* 해당 유저의 피드 불러오기 */
-      await axios.post('/api/feed/profile', {
-        userid : profileUID,
-      })
-      .then((res) => { 
-          //console.log(res)
-          feeds.value = res.data.profile;
-          //console.log(feeds.value)
-      })
-      .catch((err) => {
+      try {
+        await axios.post('/api/feed/profile', {
+          userid : profileUID,
+        })
+        .then((res) => { 
+            //console.log(res)
+            feeds.value = res.data.profile;
+            //console.log(feeds.value)
+        })
+      } catch(err) {
           console.log('에러메세지 : ', err)
-      });
+      }
     });
 
     return {

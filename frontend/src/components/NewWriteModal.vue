@@ -85,19 +85,16 @@ export default {
         formData.append("content", postContent.value);
         formData.append("num_likes", 0);
 
-        await axios.post('/api/feed', formData, config)
-        .then( (res) => {
-          console.log(res.data.message);
-          emit('close-modal');
-          router.go();
-          // if ( router.currentRoute._value.fullPath == '/')  { //홈에서 새 피드 등록 후 새로고침
-          //   router.go();
-          // }
-
-        })
-        .catch((err) => {
+        try {
+          await axios.post('/api/feed', formData, config)
+          .then( (res) => {
+            console.log(res.data.message);
+            emit('close-modal');
+            router.go();
+          })
+        } catch(err) {
             console.log('에러메세지 : ', err)
-        });
+        }
       }
     }
     

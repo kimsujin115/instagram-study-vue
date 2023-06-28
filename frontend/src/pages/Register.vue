@@ -78,27 +78,27 @@ export default {
         //alert('아이디, 이름, 이메일, 비밀번호를 모두 입력해 주세요.');
         return;
       } else {
-        await axios.post("/api/users/signUp", {
-          userid : userid.value,
-          username : username.value,
-          email : email.value,
-          password : password.value,
-          profile_img : './img_profile.jpg'
-        })
-        .then((res) => {
-          if (res.data.success == true) { //가입성공
-            alert(res.data.message);
-            router.push('/login'); 
-          } else { //가입실패
-            errText.value = res.data.message
-            vaildBool.value = false;
-            //alert(res.data.message)
-          }
-        })
-        .catch((err) => {
+        try {
+          await axios.post("/api/users/signUp", {
+            userid : userid.value,
+            username : username.value,
+            email : email.value,
+            password : password.value,
+            profile_img : './img_profile.jpg'
+          })
+          .then((res) => {
+            if (res.data.success == true) { //가입성공
+              alert(res.data.message);
+              router.push('/login'); 
+            } else { //가입실패
+              errText.value = res.data.message
+              vaildBool.value = false;
+              //alert(res.data.message)
+            }
+          })
+        } catch(err) {
             console.log('에러메세지 : ', err)
-        });
-
+        }
       }
     }
 
