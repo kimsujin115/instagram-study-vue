@@ -31,12 +31,14 @@
 import store from '../store'
 import { computed, ref } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 export default{
     setup() {
         const currentUser = computed(() => store.state.user);
         const self_intro = ref('');
         const profile_img = ref('');
+        const router = useRouter();
         const formData = new FormData();
         const config = {
             header: { 'content-type': 'multipart/form-data' },
@@ -54,9 +56,9 @@ export default{
                 await axios.post('/api/profile', formData, config)
                 .then((res) => {
                     console.log(res.data.message)
-                    console.log(res.data.profile_img);
-                    store.commit("SET_PROFILE", res.data.profile_img);
-                    // console.log(currentUser.value)
+                    console.log(res.data.profile); // profile_img : profile 이미지 주소 객체 형태로 노출
+                    store.commit("SET_PROFILE", res.data.profile.profile_img);
+                    //console.log(currentUser.value.profile_img)
                 })
                 .catch((err) => {
                     console.log('에러메세지 : ', err);
@@ -69,6 +71,7 @@ export default{
             self_intro,
             profile_img,
             onProfleChange,
+            router,
         }
     }
 }

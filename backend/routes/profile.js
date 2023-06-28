@@ -53,7 +53,7 @@ const storage = multer.diskStorage({
                     return res.json({
                         success : true,
                         message : '프로필 이미지 변경 완료',
-                        profile_img : row2[0],
+                        profile : row2[0],
                     });
                 }
             })
