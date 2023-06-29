@@ -37,7 +37,7 @@ export default{
     setup() {
         const currentUser = computed(() => store.state.user);
         const self_intro = ref('');
-        const profile_img = ref('');
+        const profile_img = ref(null);
         const router = useRouter();
         const formData = new FormData();
         const config = {
@@ -59,9 +59,12 @@ export default{
                         console.log(res.data.message)
                         console.log(res.data.profile); // profile_img : profile 이미지 주소 객체 형태로 노출
                         store.commit("SET_PROFILE", res.data.profile.profile_img);
+                        router.go('/');
                     })
                 } catch(err) {
                     console.log('에러메세지 : ', err);
+                    alert('다시 등록해 주세요.')
+                    store.commit("SET_PROFILE", './img_profile.jpg');
                 }
             }
         }
