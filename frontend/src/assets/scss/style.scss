@@ -350,6 +350,21 @@ input[type='password'] {
                 font-size:14px;
             }
         }
+        .replyInput {
+            display: flex;
+            margin-top:10px;
+            button {
+                margin-left:5px;
+                width:80px;
+                height:45px;
+                font-size:14px;
+                border-radius: 5px;
+                background-color:#e4e4e4;
+                &.active {
+                    background-color: #2f8fd8;
+                }
+            }
+        }
     }
 }
 

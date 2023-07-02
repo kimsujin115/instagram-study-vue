@@ -263,6 +263,18 @@ input[type='password'] {
     .feedList li .feedText .btnMore {
       color: #999;
       font-size: 14px; }
+  .feedList li .replyInput {
+    display: flex;
+    margin-top: 10px; }
+    .feedList li .replyInput button {
+      margin-left: 5px;
+      width: 80px;
+      height: 45px;
+      font-size: 14px;
+      border-radius: 5px;
+      background-color: #e4e4e4; }
+      .feedList li .replyInput button.active {
+        background-color: #2f8fd8; }
 
 /* 게시물 등록 팝업 */
 .newWritePopup {

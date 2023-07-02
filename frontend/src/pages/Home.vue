@@ -45,6 +45,10 @@
                 <span class="text">{{post.content}}</span>
                 <button class="btnMore">...더 보기</button>
             </div>
+            <div class="replyInput">
+                <input type="text" placeholder="댓글달기..">
+                <button>입력</button>
+            </div>
         </li>
     </ul>
 </template>
