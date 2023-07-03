@@ -46,8 +46,8 @@
                 <button class="btnMore">...더 보기</button>
             </div>
             <div class="replyInput">
-                <input type="text" placeholder="댓글달기..">
-                <button>입력</button>
+                <input type="text" placeholder="댓글달기.." v-model="comment">
+                <button :class="`${comment ? 'active' : ''}`">입력</button>
             </div>
         </li>
     </ul>
@@ -63,6 +63,7 @@ export default {
     setup() {
         const posts = ref([]); //게시글
         const postProfile = ref([]); //게시글의 유저 프로필
+        const comment = ref('');
 
         onBeforeMount( async () => {
             try {
@@ -98,6 +99,7 @@ export default {
             postProfile,
             resultPostUser,
             moment,
+            comment,
         }
     }
 }
