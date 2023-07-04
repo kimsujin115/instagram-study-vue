@@ -6,7 +6,8 @@ const connection = mysql.createConnection({
   port: 3306,
   user: 'root',   
   password: 'mysqlPW1!',
-  database: 'instar_crud'  //기본스키마 설정했을경우 그 스키마 이름으로 정해줘야해
+  database: 'instar_crud',  //기본스키마 설정했을경우 그 스키마 이름으로 정해줘야해
+  multipleStatements: true, // 여러 쿼리를 ';'를 기준으로 한번에 보낼 수 있게한다.
 });  
 
 // Connect
