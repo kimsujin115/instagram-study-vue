@@ -40,22 +40,28 @@ const storage = multer.diskStorage({
       'content' : req.body.content,
       'num_likes' : req.body.num_likes,
     }
-    connection.query(`SELECT * FROM post`, (err,row) => {
-      if(row[0] == undefined) { //등록된 피드가 없을 경우 AUTO_INCREMENT 초기화
-        connection.query(`ALTER TABLE post AUTO_INCREMENT=1`)
-      }
-
-      //피드 추가등록
-      connection.query(`INSERT INTO post (userid, image_url, content, num_likes, created_at) VALUES ('${post.userid}', '${post.image_url}', '${post.content}', '${post.num_likes}', NOW())`, (err, row2) => {
+    //유저의 피드 개수 체크 한 후 postNo 저장, 피드 등록까지 여러 쿼리 한번에 진행
+     connection.query(`SET @length := (SELECT count(*) FROM post WHERE userid = '${post.userid}'); SET @postid := CONCAT('${post.userid}',CONCAT(@length)); INSERT INTO post (postNo, userid, image_url, content, num_likes, created_at) VALUES (@postid, '${post.userid}', '${post.image_url}', '${post.content}', '${post.num_likes}', NOW())`, (err, row) => {
         if (err) {
-          return res.json({ success: false, err });
+          return res.json({ success: false, message : err });
         } else {
           return res.json({
             success : true,
             message : '새로운 피드 등록 완료!'
           });
-        }
-      });
+      }
+
+      //피드 추가등록
+      // connection.query(`INSERT INTO post (postNo, userid, image_url, content, num_likes, created_at) VALUES ('${post.userid} @length' '${post.userid}', '${post.image_url}', '${post.content}', '${post.num_likes}', NOW())`, (err, row2) => {
+      //   if (err) {
+      //     return res.json({ success: false, message : err });
+      //   } else {
+      //     return res.json({
+      //       success : true,
+      //       message : '새로운 피드 등록 완료!'
+      //     });
+      //   }
+      // });
     })
 
   });
