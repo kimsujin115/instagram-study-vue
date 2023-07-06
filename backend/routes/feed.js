@@ -41,7 +41,7 @@ const storage = multer.diskStorage({
       'num_likes' : req.body.num_likes,
     }
     //유저의 피드 개수 체크 한 후 postNo 저장, 피드 등록까지 여러 쿼리 한번에 진행
-     connection.query(`SET @length := (SELECT count(*) FROM post WHERE userid = '${post.userid}'); SET @postid := CONCAT('${post.userid}',CONCAT(@length)); INSERT INTO post (postNo, userid, image_url, content, num_likes, created_at) VALUES (@postid, '${post.userid}', '${post.image_url}', '${post.content}', '${post.num_likes}', NOW())`, (err, row) => {
+     connection.query(`SET @length := (SELECT count(*) FROM post WHERE userid = '${post.userid}'); SET @postid := CONCAT('postNo_${post.userid}_',CONCAT(@length)); INSERT INTO post (postNo, userid, image_url, content, num_likes, created_at) VALUES (@postid, '${post.userid}', '${post.image_url}', '${post.content}', '${post.num_likes}', NOW())`, (err, row) => {
         if (err) {
           return res.json({ success: false, message : err });
         } else {
