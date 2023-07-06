@@ -47,7 +47,7 @@
             </div>
             <div class="replyInput">
                 <input type="text" placeholder="댓글달기.." v-model="comment">
-                <button :class="`${comment ? 'active' : ''}`">입력</button>
+                <button @click="onComments(post)" :class="`${comment ? 'active' : ''}`">입력</button>
             </div>
         </li>
     </ul>
@@ -55,12 +55,14 @@
 
 <script>
 import axios from 'axios';
-import { onBeforeMount, ref } from 'vue';
-import moment from 'moment'
+import { onBeforeMount, ref, computed } from 'vue';
+import moment, { now } from 'moment'
 import 'moment/locale/ko'  // 1분전, 1시간전, 하루전 이렇게 한글로 노출되게
+import store from '../store';
 
 export default {
     setup() {
+        const currentUser = computed(() => store.state.user);
         const posts = ref([]); //게시글
         const postProfile = ref([]); //게시글의 유저 프로필
         const comment = ref('');
@@ -94,12 +96,36 @@ export default {
             }
         }
 
+        /* 댓글 등록하기 */
+        const onComments = async (post) => {
+            console.log(post)
+            if (!comment.value) {
+                alert('댓글을 입력해 주세요.')
+            } else {
+                try {
+                    await axios.post('/api/comments', {
+                        userid : currentUser.value.userid,
+                        postNo : post.postNo,
+                        postuser : post.userid,
+                        comment : comment.value,
+                    })
+                    .then((res) => {
+                        console.log(res.data.message)
+                    })
+                } catch(err) {
+                    console.log('댓글 등록 실패 에러메시지 : ', err )
+                }
+            }
+        }
+
         return {
+            currentUser,
             posts,
             postProfile,
             resultPostUser,
             moment,
             comment,
+            onComments,
         }
     }
 }
