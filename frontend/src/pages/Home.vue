@@ -110,7 +110,8 @@ export default {
                         comment : comment.value,
                     })
                     .then((res) => {
-                        console.log(res.data.message)
+                        console.log(res.data.message);
+                        comment.value = '';
                     })
                 } catch(err) {
                     console.log('댓글 등록 실패 에러메시지 : ', err )
