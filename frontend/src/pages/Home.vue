@@ -56,7 +56,7 @@
 <script>
 import axios from 'axios';
 import { onBeforeMount, ref, computed } from 'vue';
-import moment, { now } from 'moment'
+import moment from 'moment'
 import 'moment/locale/ko'  // 1분전, 1시간전, 하루전 이렇게 한글로 노출되게
 import store from '../store';
 
