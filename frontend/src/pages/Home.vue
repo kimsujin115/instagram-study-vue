@@ -25,7 +25,7 @@
             </div>
             <div class="utill">
                 <div class="group">
-                    <button>
+                    <button @click="onPostLikes(post)">
                         <i class="far fa-heart"></i>
                     </button>
                     <button>
@@ -74,6 +74,7 @@ export default {
                     //console.log(res)
                     posts.value = res.data.list;
                     resultPostUser();
+                    onPostLikes();
                 })
             }catch(err) {
                 console.log('에러메세지 : ', err)
@@ -119,6 +120,31 @@ export default {
             }
         }
 
+        /* 내가 좋아요 누른 게시글 isLiked 여부 */
+        const onPostLikes = async () => {
+            console.log(posts.value)
+            for (let i=0; i < posts.value.length; i++) {
+                try {
+                    await axios.post('/api/likes', {
+                        userid : currentUser.value.userid,
+                        postNo : posts.value[i].postNo,
+                    })
+                    .then((res) => {
+                        console.log(res.data.count)
+                        if (res.data.count == 0) {
+                            posts.value[i].isLiked = false 
+                        } else {
+                            posts.value[i].isLiked = true
+                        }
+                    })
+                }
+                catch(err) {
+                    console.log('에러메시지 : ', err)
+                }
+            }
+           
+        }
+
         return {
             currentUser,
             posts,
@@ -127,6 +153,7 @@ export default {
             moment,
             comment,
             onComments,
+            onPostLikes,
         }
     }
 }
