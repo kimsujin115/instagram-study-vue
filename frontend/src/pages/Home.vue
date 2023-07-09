@@ -120,7 +120,7 @@ export default {
             }
         }
 
-        /* 내가 좋아요 누른 게시글 isLiked 여부 */
+        /* 내가 좋아요 누른 게시글 isLiked 유무 체크 함수 */
         const onPostLikes = async () => {
             console.log(posts.value)
             for (let i=0; i < posts.value.length; i++) {
@@ -131,7 +131,7 @@ export default {
                     })
                     .then((res) => {
                         console.log(res.data.count)
-                        if (res.data.count == 0) {
+                        if (res.data.count == 0) { //좋아요 누르지 않았으면 0 : false, 눌렀으면 1 : true
                             posts.value[i].isLiked = false 
                         } else {
                             posts.value[i].isLiked = true
@@ -142,7 +142,6 @@ export default {
                     console.log('에러메시지 : ', err)
                 }
             }
-           
         }
 
         return {
