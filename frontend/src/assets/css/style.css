@@ -247,6 +247,8 @@ input[type='password'] {
       font-size: 26px; }
     .feedList li .utill .group button + button {
       margin-left: 12px; }
+    .feedList li .utill .group button .fa-heart.fas {
+      color: #e42e2e; }
   .feedList li .like_num {
     font-size: 16px;
     font-weight: bold; }

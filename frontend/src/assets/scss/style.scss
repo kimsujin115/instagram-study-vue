@@ -326,6 +326,11 @@ input[type='password'] {
                     & + button {
                         margin-left:12px;
                     }
+                    .fa-heart {
+                        &.fas {
+                            color:#e42e2e;
+                        }
+                    }
                 }
             }
         }
