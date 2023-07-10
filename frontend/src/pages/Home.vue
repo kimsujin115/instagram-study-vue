@@ -25,8 +25,9 @@
             </div>
             <div class="utill">
                 <div class="group">
-                    <button>
-                        <i class="far fa-heart"></i>
+                    <button @click="handleLikes(post)">
+                        <i v-if="post.isLiked" class="fas fa-heart"></i>
+                        <i v-else class="far fa-heart"></i>
                     </button>
                     <button>
                         <i class="far fa-comment"></i>
@@ -120,7 +121,7 @@ export default {
             }
         }
 
-        /* 내가 좋아요 누른 게시글 isLiked 유무 체크 함수 */
+        /* 로드시 내가 좋아요 누른 게시글 isLiked 유무 체크 함수 */
         const onPostLiked = async () => {
             console.log(posts.value)
             for (let i=0; i < posts.value.length; i++) {
@@ -140,6 +141,41 @@ export default {
                 }
                 catch(err) {
                     console.log('에러메시지 : ', err)
+                }
+            }
+        }
+
+        const handleLikes = async (post) => {
+            //console.log(post)
+            if (!post.isLiked) { //좋아요 활성화
+                try {
+                    await axios.post('/api/likes/addLike', {
+                        userid : currentUser.value.userid,
+                        postNo : post.postNo,
+                        postuser : post.userid,
+                    })
+                    .then((res) => {
+                        console.log(res.data.message)
+                        post.isLiked = true;
+                    })
+                }
+                catch(err) {
+                    console.log('좋아요 활성 에러메시지 : ', err )
+                }
+
+            } else { //좋아요 비활성화
+                try {
+                    await axios.post('/api/likes/deleteLike', {
+                        userid : currentUser.value.userid,
+                        postNo : post.postNo,
+                    })
+                    .then((res) => {
+                        console.log(res.data.message)
+                        post.isLiked = false;
+                    })
+                }
+                catch(err) {
+                    console.log('좋아요 활성 에러메시지 : ', err )
                 }
             }
         }

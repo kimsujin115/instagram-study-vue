@@ -33,6 +33,8 @@ app.use('/api/feed/profile', feedRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/comments', commentRouter);
 app.use('/api/likes', likesRouter);
+app.use('/api/likes/addLike', likesRouter);
+app.use('/api/likes/deleteLike', likesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
