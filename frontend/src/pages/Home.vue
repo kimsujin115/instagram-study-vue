@@ -25,7 +25,7 @@
             </div>
             <div class="utill">
                 <div class="group">
-                    <button @click="onPostLikes(post)">
+                    <button>
                         <i class="far fa-heart"></i>
                     </button>
                     <button>
@@ -74,7 +74,7 @@ export default {
                     //console.log(res)
                     posts.value = res.data.list;
                     resultPostUser();
-                    onPostLikes();
+                    onPostLiked();
                 })
             }catch(err) {
                 console.log('에러메세지 : ', err)
@@ -121,7 +121,7 @@ export default {
         }
 
         /* 내가 좋아요 누른 게시글 isLiked 유무 체크 함수 */
-        const onPostLikes = async () => {
+        const onPostLiked = async () => {
             console.log(posts.value)
             for (let i=0; i < posts.value.length; i++) {
                 try {
@@ -152,7 +152,8 @@ export default {
             moment,
             comment,
             onComments,
-            onPostLikes,
+            onPostLiked,
+            handleLikes,
         }
     }
 }
