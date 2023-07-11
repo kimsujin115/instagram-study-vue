@@ -1,5 +1,5 @@
 <template>
-  <div class="newWritePopup">
+  <div class="modalPopup" id="newWritePopup">
     <div class="dim" @click="$emit('close-modal')"></div>
     <!-- popWrap -->
     <div class="popWrap">
