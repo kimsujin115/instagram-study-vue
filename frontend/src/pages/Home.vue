@@ -157,6 +157,8 @@ export default {
                     .then((res) => {
                         console.log(res.data.message)
                         post.isLiked = true;
+                        post.num_likes = res.data.like_num;
+                        //console.log('likes : ', res.data.like_num)
                     })
                 }
                 catch(err) {
@@ -172,6 +174,8 @@ export default {
                     .then((res) => {
                         console.log(res.data.message)
                         post.isLiked = false;
+                        post.num_likes = res.data.like_num;
+                        //console.log('likes- : ', res.data.like_num)
                     })
                 }
                 catch(err) {
