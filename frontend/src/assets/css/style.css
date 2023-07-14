@@ -311,53 +311,55 @@ input[type='password'] {
       justify-content: space-between; }
       .modalPopup .popWrap .popHead h3 {
         font-size: 18px; }
+      .modalPopup .popWrap .popHead .btnClose {
+        font-size: 22px; }
     .modalPopup .popWrap .popCont {
       display: flex;
       width: 100%;
       height: 500px; }
+      .modalPopup .popWrap .popCont .imgArea {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        border-right: 1px solid #e4e4e4; }
   .modalPopup#newWritePopup .popWrap .popHead .back {
     font-size: 18px; }
   .modalPopup#newWritePopup .popWrap .popHead .btnEnroll {
     font-size: 16px;
     color: #2f8fd8; }
-  .modalPopup#newWritePopup .popWrap .popCont .imgArea {
-    display: flex;
+  .modalPopup#newWritePopup .popWrap .popCont .imgArea .fileUpload {
+    position: relative;
+    cursor: pointer; }
+    .modalPopup#newWritePopup .popWrap .popCont .imgArea .fileUpload input {
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 1px;
+      height: 1px; }
+    .modalPopup#newWritePopup .popWrap .popCont .imgArea .fileUpload > i {
+      font-size: 50px; }
+  .modalPopup#newWritePopup .popWrap .popCont .imgArea .img {
+    position: relative;
+    padding: 30px;
     width: 100%;
-    justify-content: center;
-    align-items: center;
-    border-right: 1px solid #e4e4e4; }
-    .modalPopup#newWritePopup .popWrap .popCont .imgArea .fileUpload {
-      position: relative;
-      cursor: pointer; }
-      .modalPopup#newWritePopup .popWrap .popCont .imgArea .fileUpload input {
-        position: absolute;
-        top: -1px;
-        left: -1px;
-        width: 1px;
-        height: 1px; }
-      .modalPopup#newWritePopup .popWrap .popCont .imgArea .fileUpload > i {
-        font-size: 50px; }
-    .modalPopup#newWritePopup .popWrap .popCont .imgArea .img {
-      position: relative;
-      padding: 30px;
-      width: 100%;
-      height: 100%; }
-      .modalPopup#newWritePopup .popWrap .popCont .imgArea .img img {
-        position: absolute;
-        max-width: 100%;
-        max-height: 100%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        object-fit: cover; }
-      .modalPopup#newWritePopup .popWrap .popCont .imgArea .img .btnDel {
-        position: absolute;
-        right: 12px;
-        top: 12px; }
-        .modalPopup#newWritePopup .popWrap .popCont .imgArea .img .btnDel i {
-          font-size: 20px; }
+    height: 100%; }
+    .modalPopup#newWritePopup .popWrap .popCont .imgArea .img img {
+      position: absolute;
+      max-width: 100%;
+      max-height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      object-fit: cover; }
+    .modalPopup#newWritePopup .popWrap .popCont .imgArea .img .btnDel {
+      position: absolute;
+      right: 12px;
+      top: 12px; }
+      .modalPopup#newWritePopup .popWrap .popCont .imgArea .img .btnDel i {
+        font-size: 20px; }
   .modalPopup#newWritePopup .popWrap .popCont .writeArea {
-    width: 35%;
+    width: 300px;
     padding: 0 10px; }
     .modalPopup#newWritePopup .popWrap .popCont .writeArea .user {
       margin: 15px 0 10px;
@@ -386,6 +388,83 @@ input[type='password'] {
       text-align: right;
       font-size: 14px;
       color: #ddd; }
+  .modalPopup.commentPopup .popWrap .popCont .imgArea img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
+  .modalPopup.commentPopup .popWrap .popCont .viewArea {
+    width: 300px; }
+    .modalPopup.commentPopup .popWrap .popCont .viewArea .user {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      border-bottom: 1px solid #ddd; }
+      .modalPopup.commentPopup .popWrap .popCont .viewArea .user .info {
+        display: flex;
+        align-items: center; }
+        .modalPopup.commentPopup .popWrap .popCont .viewArea .user .info .img {
+          overflow: hidden;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%; }
+          .modalPopup.commentPopup .popWrap .popCont .viewArea .user .info .img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; }
+        .modalPopup.commentPopup .popWrap .popCont .viewArea .user .info .userid {
+          margin-left: 8px;
+          font-size: 16px;
+          font-weight: bold; }
+      .modalPopup.commentPopup .popWrap .popCont .viewArea .user .btnDel {
+        font-size: 14px;
+        font-weight: bold;
+        color: #ff6d6d; }
+    .modalPopup.commentPopup .popWrap .popCont .viewArea .cont {
+      display: flex;
+      padding: 10px;
+      align-items: flex-start; }
+      .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .img {
+        overflow: hidden;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%; }
+        .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover; }
+      .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .textarea {
+        flex: 1;
+        margin-left: 8px; }
+        .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .textarea > strong {
+          margin-right: 10px;
+          font-size: 16px; }
+        .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .textarea .text {
+          font-size: 16px; }
+    .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList {
+      overflow-y: auto;
+      height: 320px; }
+      .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList li {
+        display: flex;
+        padding: 10px;
+        align-items: flex-start; }
+        .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList li .img {
+          overflow: hidden;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%; }
+          .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList li .img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; }
+        .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList li .reply {
+          flex: 1;
+          margin-left: 8px; }
+          .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList li .reply > strong {
+            margin-right: 10px;
+            font-size: 16px; }
+          .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList li .reply .text {
+            font-size: 16px; }
 
 /* my profile */
 .mypageWrap .profile {

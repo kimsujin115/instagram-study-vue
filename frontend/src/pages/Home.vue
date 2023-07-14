@@ -29,7 +29,7 @@
                         <i v-if="post.isLiked" class="fas fa-heart"></i>
                         <i v-else class="far fa-heart"></i>
                     </button>
-                    <button>
+                    <button @click="showCommentModal = true">
                         <i class="far fa-comment"></i>
                     </button>
                     <button>
@@ -52,6 +52,9 @@
             </div>
         </li>
     </ul>
+
+    <!-- 댓글 팝업 -->
+    <CommentModal v-if="showCommentModal"></CommentModal>
 </template>
 
 <script>
@@ -60,13 +63,16 @@ import { onBeforeMount, ref, computed } from 'vue';
 import moment from 'moment'
 import 'moment/locale/ko'  // 1분전, 1시간전, 하루전 이렇게 한글로 노출되게
 import store from '../store';
+import CommentModal from '../components/CommentModal.vue'
 
 export default {
+    components : { CommentModal },
     setup() {
         const currentUser = computed(() => store.state.user);
         const posts = ref([]); //게시글
         const postProfile = ref([]); //게시글의 유저 프로필
         const comment = ref('');
+        const showCommentModal = ref(false);
 
         onBeforeMount( async () => {
             try {
@@ -194,6 +200,7 @@ export default {
             onComments,
             onPostLiked,
             handleLikes,
+            showCommentModal,
         }
     }
 }
