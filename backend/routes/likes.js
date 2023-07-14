@@ -33,11 +33,12 @@ router.post('/addLike', (req, res, next) => {
     if (err) throw err;
     
     /* post 테이블 num_likes 필드에 +1 */
-    connection.query(`SET @likeNum := (SELECT num_likes FROM post WHERE postNo = '${likes.postNo}'); UPDATE post SET num_likes = @likeNum+1 WHERE postNo = '${likes.postNo}'`, (err2, like) => {
+    connection.query(`SET @likeNum := (SELECT num_likes FROM post WHERE postNo = '${likes.postNo}'); UPDATE post SET num_likes = @likeNum+1 WHERE postNo = '${likes.postNo}'; SELECT num_likes FROM post WHERE postNo = '${likes.postNo}'`, (err2, post) => {
       if (err2) throw err2;
 
       return res.json({
           success : true,
+          like_num : post[2][0].num_likes,
           message : 'DB에 좋아요 추가 및 개수 증가 완료'
       });
 
@@ -56,11 +57,12 @@ router.post('/deleteLike', (req, res, next) => {
     if (err) throw err;
     
     /* post 테이블 num_likes 필드에 -1 */
-    connection.query(`SET @likeNum := (SELECT num_likes FROM post WHERE postNo = '${likes.postNo}'); UPDATE post SET num_likes = @likeNum-1 WHERE postNo = '${likes.postNo}'`, (err2, like) => {
+    connection.query(`SET @likeNum := (SELECT num_likes FROM post WHERE postNo = '${likes.postNo}'); UPDATE post SET num_likes = @likeNum-1 WHERE postNo = '${likes.postNo}'; SELECT num_likes FROM post WHERE postNo = '${likes.postNo}'`, (err2, post) => {
       if (err2) throw err2;
 
       return res.json({
           success : true,
+          like_num : post[2][0].num_likes,
           message : 'DB에 좋아요 삭제 및 개수 감소 완료'
       });
 
