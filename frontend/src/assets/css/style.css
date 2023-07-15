@@ -421,50 +421,58 @@ input[type='password'] {
         font-weight: bold;
         color: #ff6d6d; }
     .modalPopup.commentPopup .popWrap .popCont .viewArea .cont {
-      display: flex;
-      padding: 10px;
-      align-items: flex-start; }
-      .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .img {
-        overflow: hidden;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%; }
-        .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .img img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover; }
-      .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .textarea {
-        flex: 1;
-        margin-left: 8px; }
-        .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .textarea > strong {
-          margin-right: 10px;
-          font-size: 16px; }
-        .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .textarea .text {
-          font-size: 16px; }
-    .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList {
       overflow-y: auto;
-      height: 320px; }
-      .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList li {
+      height: calc(100% - 52px); }
+      .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .feed {
         display: flex;
         padding: 10px;
         align-items: flex-start; }
-        .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList li .img {
+        .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .feed .img {
           overflow: hidden;
           width: 30px;
           height: 30px;
           border-radius: 50%; }
-          .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList li .img img {
+          .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .feed .img img {
             width: 100%;
             height: 100%;
             object-fit: cover; }
-        .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList li .reply {
+        .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .feed .textarea {
           flex: 1;
           margin-left: 8px; }
-          .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList li .reply > strong {
+          .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .feed .textarea > strong {
             margin-right: 10px;
             font-size: 16px; }
-          .modalPopup.commentPopup .popWrap .popCont .viewArea .commentList li .reply .text {
+          .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .feed .textarea .text {
             font-size: 16px; }
+      .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .commentList li {
+        padding: 10px; }
+        .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .commentList li + li {
+          margin-top: 5px; }
+        .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .commentList li .comment {
+          display: flex;
+          align-items: flex-start; }
+          .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .commentList li .comment .img {
+            overflow: hidden;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%; }
+            .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .commentList li .comment .img img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover; }
+          .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .commentList li .comment .reply {
+            flex: 1;
+            margin-left: 8px; }
+            .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .commentList li .comment .reply > strong {
+              margin-right: 10px;
+              font-size: 16px; }
+            .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .commentList li .comment .reply .text {
+              font-size: 16px; }
+        .modalPopup.commentPopup .popWrap .popCont .viewArea .cont .commentList li .date {
+          display: block;
+          margin: 8px 0 0 40px;
+          color: #999;
+          font-size: 14px; }
 
 /* my profile */
 .mypageWrap .profile {

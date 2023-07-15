@@ -26,25 +26,32 @@
                         <button class="btnDel">삭제</button>
                     </div>
                     <div class="cont">
-                        <div class="img">
-                            <img src="http://picsum.photos/300" alt="">
-                        </div>
-                        <div class="textarea">
-                            <strong>userid</strong>
-                            <span class="text">게시글 내용입니다.</span>
-                        </div>
-                    </div>
-                    <ul class="commentList">
-                        <li v-for="comment in 8" :key="comment">
+                        <!-- feed -->
+                        <div class="feed">
                             <div class="img">
-                                <img src="http://picsum.photos/200" alt="">
+                                <img src="http://picsum.photos/300" alt="">
                             </div>
-                            <div class="reply">
-                                <strong>comment user</strong>
-                                <span class="text">댓글 내용입니다.</span>
+                            <div class="textarea">
+                                <strong>userid</strong>
+                                <span class="text">게시글 내용입니다.</span>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                        <!--  commentList -->
+                        <ul class="commentList">
+                            <li v-for="comment in 8" :key="comment">
+                                <div class="comment">
+                                    <div class="img">
+                                        <img src="http://picsum.photos/200" alt="">
+                                    </div>
+                                    <div class="reply">
+                                        <strong>comment user</strong>
+                                        <span class="text">댓글 내용입니다.</span>
+                                    </div>
+                                </div>
+                                <span class="date">2분전</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
