@@ -29,7 +29,7 @@
                         <i v-if="post.isLiked" class="fas fa-heart"></i>
                         <i v-else class="far fa-heart"></i>
                     </button>
-                    <button @click="showCommentModal = true">
+                    <button @click="onCommentsModal(post,idx)">
                         <i class="far fa-comment"></i>
                     </button>
                     <button>
@@ -54,7 +54,7 @@
     </ul>
 
     <!-- 댓글 팝업 -->
-    <CommentModal v-if="showCommentModal"></CommentModal>
+    <CommentModal v-bind:post="currPost" v-if="showCommentModal" @close-modal="showCommentModal = false"></CommentModal>
 </template>
 
 <script>
@@ -73,6 +73,7 @@ export default {
         const postProfile = ref([]); //게시글의 유저 프로필
         const comment = ref('');
         const showCommentModal = ref(false);
+        const currPost = ref(null);
 
         onBeforeMount( async () => {
             try {
@@ -190,6 +191,14 @@ export default {
             }
         }
 
+        /* 댓글보기 버튼 클릭 시 props 할 변수에 클릭한 post 정보 담아주는 함수 */
+        const onCommentsModal = (post, idx) => {
+            showCommentModal.value = true;
+            currPost.value = post;
+            currPost.value.postUserProfile = postProfile.value[idx];
+            console.log(currPost);
+        }
+
         return {
             currentUser,
             posts,
@@ -201,6 +210,8 @@ export default {
             onPostLiked,
             handleLikes,
             showCommentModal,
+            currPost,
+            onCommentsModal,
         }
     }
 }

@@ -1,27 +1,27 @@
 <template>
     <div class="modalPopup commentPopup">
-        <div class="dim"></div>
+        <div class="dim" @click="$emit('close-modal')"></div>
         <!-- popWrap -->
         <div class="popWrap">
             <!-- popHead -->
             <div class="popHead">
                 <h3>댓글</h3>
-                <button class="btnClose">
+                <button class="btnClose" @click="$emit('close-modal')">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
             <!-- popCont -->
             <div class="popCont">
                 <div class="imgArea">
-                    <img src="http://picsum.photos/600" alt="">
+                    <img :src="`http://localhost:3000/${post.image_url}`" alt="">
                 </div>
                 <div class="viewArea">
                     <div class="user">
                         <div class="info">
                             <div class="img">
-                                <img src="http://picsum.photos/300" alt="">
+                                <img :src="`${post.postUserProfile}`" :alt="`${post.userid}의 프로필`">
                             </div>
-                            <span class="userid">userid</span>
+                            <span class="userid">{{ post.userid}}</span>
                         </div>
                         <button class="btnDel">삭제</button>
                     </div>
@@ -29,11 +29,11 @@
                         <!-- feed -->
                         <div class="feed">
                             <div class="img">
-                                <img src="http://picsum.photos/300" alt="">
+                                <img :src="`${post.postUserProfile}`" :alt="`${post.userid}의 프로필`">
                             </div>
                             <div class="textarea">
-                                <strong>userid</strong>
-                                <span class="text">게시글 내용입니다.</span>
+                                <strong>{{ post.userid }}</strong>
+                                <span class="text">{{ post.content }}</span>
                             </div>
                         </div>
                         <!--  commentList -->
@@ -59,5 +59,14 @@
 </template>
 
 <script>
+    
+    export default{
+        props : [ 'post' ],
+        setup() {
 
+            return {
+                
+            }
+        }
+    }
 </script>
