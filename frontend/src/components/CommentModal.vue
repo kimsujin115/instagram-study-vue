@@ -38,17 +38,17 @@
                         </div>
                         <!--  commentList -->
                         <ul class="commentList">
-                            <li v-for="comment in 8" :key="comment">
+                            <li v-for="comment in comments" :key="comment">
                                 <div class="comment">
                                     <div class="img">
                                         <img src="http://picsum.photos/200" alt="">
                                     </div>
                                     <div class="reply">
-                                        <strong>comment user</strong>
-                                        <span class="text">댓글 내용입니다.</span>
+                                        <strong>{{ comment.userid }}</strong>
+                                        <span class="text">{{ comment.comment }}</span>
                                     </div>
                                 </div>
-                                <span class="date">2분전</span>
+                                <span class="date">{{ moment(comment.created_at).fromNow() }}</span>
                             </li>
                         </ul>
                     </div>
@@ -59,13 +59,15 @@
 </template>
 
 <script>
-    
-    export default{
-        props : [ 'post' ],
-        setup() {
+    import moment from 'moment'
+    import 'moment/locale/ko'  // 1분전, 1시간전, 하루전 이렇게 한글로 노출되게
 
+    export default{
+        props : [ 'post', 'comments' ],
+        setup() {
+            
             return {
-                
+                moment
             }
         }
     }

@@ -23,4 +23,17 @@ router.post('/', (req, res, next) => {
   });
 })
 
+/* 댓글 조회 */
+router.post('/inquiry', (req, res, next) => {
+  const postComment = req.body.postNo;
+
+  connection.query(`SELECT * FROM comments WHERE postNo = '${postComment}'`, (err, comments) => {
+    if (err) throw err;
+
+    return res.json({
+      list : comments
+    })
+  })
+})
+
 module.exports = router;

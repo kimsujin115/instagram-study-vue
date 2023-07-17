@@ -54,7 +54,7 @@
     </ul>
 
     <!-- 댓글 팝업 -->
-    <CommentModal v-bind:post="currPost" v-if="showCommentModal" @close-modal="showCommentModal = false"></CommentModal>
+    <CommentModal v-bind:post="currPost" v-bind:comments="commentList" v-if="showCommentModal" @close-modal="showCommentModal = false"></CommentModal>
 </template>
 
 <script>
@@ -74,6 +74,7 @@ export default {
         const comment = ref('');
         const showCommentModal = ref(false);
         const currPost = ref(null);
+        const commentList = ref(null);
 
         onBeforeMount( async () => {
             try {
@@ -192,11 +193,23 @@ export default {
         }
 
         /* 댓글보기 버튼 클릭 시 props 할 변수에 클릭한 post 정보 담아주는 함수 */
-        const onCommentsModal = (post, idx) => {
+        const onCommentsModal = async (post, idx) => {
             showCommentModal.value = true;
             currPost.value = post;
             currPost.value.postUserProfile = postProfile.value[idx];
             console.log(currPost);
+
+            try {
+                await axios.post('/api/comments/inquiry', {
+                    postNo : post.postNo,
+                })
+                .then((res) => {
+                    console.log('리스트 :', res.data.list)
+                    commentList.value = res.data.list;
+                })
+            } catch(err) {
+                console.log('댓글 조회 에러메시지 : ', err)
+            }
         }
 
         return {
@@ -212,6 +225,7 @@ export default {
             showCommentModal,
             currPost,
             onCommentsModal,
+            commentList,
         }
     }
 }
