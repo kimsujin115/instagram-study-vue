@@ -204,11 +204,29 @@ export default {
                     postNo : post.postNo,
                 })
                 .then((res) => {
-                    console.log('리스트 :', res.data.list)
+                    //console.log('리스트 :', res.data.list)
                     commentList.value = res.data.list; //댓글 리스트
+                    commentUserProfile();
+                    console.log(commentList.value)
                 })
             } catch(err) {
                 console.log('댓글 조회 에러메시지 : ', err)
+            }
+        }
+
+        /* 댓글의 유저 프로필 가져오기 */
+        const commentUserProfile = async () => {
+            for (let i=0; i < commentList.value.length; i++) {
+               try {
+                    await axios.post('/api/users', {
+                        userid : commentList.value[i].userid,
+                    })
+                    .then((user) => {
+                        commentList.value[i].profile_img = user.data.userid.profile_img;
+                    })
+               } catch(err) {
+                    console.log('댓글 유저의 프로필 이미지 에러메시지 :', err)
+                }
             }
         }
 
@@ -226,6 +244,7 @@ export default {
             currPost,
             onCommentsModal,
             commentList,
+            commentUserProfile,
         }
     }
 }

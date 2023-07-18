@@ -26,7 +26,7 @@
                         <button class="btnDel">삭제</button>
                     </div>
                     <div class="cont">
-                        <!-- feed -->
+                        <!-- feed : 피드 내용 -->
                         <div class="feed">
                             <div class="img">
                                 <img :src="`${post.postUserProfile}`" :alt="`${post.userid}의 프로필`">
@@ -36,12 +36,12 @@
                                 <span class="text">{{ post.content }}</span>
                             </div>
                         </div>
-                        <!--  commentList -->
+                        <!--  commentList : 댓글 목록 -->
                         <ul class="commentList">
                             <li v-for="comment in comments" :key="comment">
                                 <div class="comment">
                                     <div class="img">
-                                        <img src="http://picsum.photos/200" alt="">
+                                        <img :src="`${comment.profile_img}`" :alt="`${comment.userid}의 프로필`">
                                     </div>
                                     <div class="reply">
                                         <strong>{{ comment.userid }}</strong>
@@ -65,7 +65,6 @@
     export default{
         props : [ 'post', 'comments' ],
         setup() {
-            
             return {
                 moment
             }
