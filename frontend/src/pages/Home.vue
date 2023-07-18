@@ -195,8 +195,8 @@ export default {
         /* 댓글보기 버튼 클릭 시 props 할 변수에 클릭한 post 정보 담아주는 함수 */
         const onCommentsModal = async (post, idx) => {
             showCommentModal.value = true;
-            currPost.value = post;
-            currPost.value.postUserProfile = postProfile.value[idx];
+            currPost.value = post; //해당 게시글 정보 넣기
+            currPost.value.postUserProfile = postProfile.value[idx]; //해당 게시글 유저의 프로필 이미지 
             console.log(currPost);
 
             try {
@@ -205,7 +205,7 @@ export default {
                 })
                 .then((res) => {
                     console.log('리스트 :', res.data.list)
-                    commentList.value = res.data.list;
+                    commentList.value = res.data.list; //댓글 리스트
                 })
             } catch(err) {
                 console.log('댓글 조회 에러메시지 : ', err)
