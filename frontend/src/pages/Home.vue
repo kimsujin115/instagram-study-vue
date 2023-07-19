@@ -197,7 +197,7 @@ export default {
             showCommentModal.value = true;
             currPost.value = post; //해당 게시글 정보 넣기
             currPost.value.postUserProfile = postProfile.value[idx]; //해당 게시글 유저의 프로필 이미지 
-            console.log(currPost);
+            //console.log(currPost);
 
             try {
                 await axios.post('/api/comments/inquiry', {
@@ -207,7 +207,7 @@ export default {
                     //console.log('리스트 :', res.data.list)
                     commentList.value = res.data.list; //댓글 리스트
                     commentUserProfile();
-                    console.log(commentList.value)
+                    //console.log(commentList.value)
                 })
             } catch(err) {
                 console.log('댓글 조회 에러메시지 : ', err)
