@@ -625,11 +625,33 @@ input[type='password'] {
                                         }
                                     }
                                 }
-                                .date {
-                                    display: block;
+                                .etc {
+                                    display: flex;
+                                    align-items: center;
                                     margin:8px 0 0 40px;
-                                    color:#999;
-                                    font-size:14px;
+                                    .date {
+                                        display: block;
+                                        color:#999;
+                                        font-size:14px;
+                                    }
+                                    .btnDel {
+                                        position: relative;
+                                        padding-left:9px;
+                                        margin-left:8px;
+                                        font-size:14px;
+                                        color:#ff6d6d;
+                                        &:before {
+                                            content:'';
+                                            position: absolute;
+                                            left:0;
+                                            top:50%;
+                                            width:3px;
+                                            height:3px;
+                                            transform: translateY(-50%);
+                                            border-radius: 50%;
+                                            background:#ccc;
+                                        }
+                                    }
                                 }
                             }
                         }

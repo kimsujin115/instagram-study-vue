@@ -48,7 +48,10 @@
                                         <span class="text">{{ comment.comment }}</span>
                                     </div>
                                 </div>
-                                <span class="date">{{ moment(comment.created_at).fromNow() }}</span>
+                                <div class="etc">
+                                    <span class="date">{{ moment(comment.created_at).fromNow() }}</span>
+                                    <button v-if="comment.userid == currentUser.userid" class="btnDel">삭제</button>
+                                </div>
                             </li>
                         </ul>
                     </div>
