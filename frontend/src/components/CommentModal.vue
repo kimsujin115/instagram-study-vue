@@ -23,7 +23,7 @@
                             </div>
                             <span class="userid">{{ post.userid}}</span>
                         </div>
-                        <button class="btnDel">삭제</button>
+                        <button v-if="post.userid == currentUser.userid" class="btnDel">삭제</button>
                     </div>
                     <div class="cont">
                         <!-- feed : 피드 내용 -->
@@ -61,11 +61,16 @@
 <script>
     import moment from 'moment'
     import 'moment/locale/ko'  // 1분전, 1시간전, 하루전 이렇게 한글로 노출되게
+    import { computed } from 'vue';
+    import store from '../store';
 
     export default{
         props : [ 'post', 'comments' ],
         setup() {
+            const currentUser = computed(() => store.state.user);
+
             return {
+                currentUser,
                 moment
             }
         }
