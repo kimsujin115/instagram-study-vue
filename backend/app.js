@@ -33,6 +33,7 @@ app.use('/api/feed/profile', feedRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/comments', commentRouter);
 app.use('/api/comments/inquiry', commentRouter);
+app.use('/api/comments/delete', commentRouter);
 app.use('/api/likes', likesRouter);
 app.use('/api/likes/addLike', likesRouter);
 app.use('/api/likes/deleteLike', likesRouter);

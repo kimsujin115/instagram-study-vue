@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="etc">
                                     <span class="date">{{ moment(comment.created_at).fromNow() }}</span>
-                                    <button v-if="comment.userid == currentUser.userid" class="btnDel">삭제</button>
+                                    <button v-if="comment.userid == currentUser.userid" class="btnDel" @click="onDeleteComment(comment, post)">삭제</button>
                                 </div>
                             </li>
                         </ul>
@@ -62,6 +62,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     import moment from 'moment'
     import 'moment/locale/ko'  // 1분전, 1시간전, 하루전 이렇게 한글로 노출되게
     import { computed } from 'vue';
@@ -72,9 +73,24 @@
         setup() {
             const currentUser = computed(() => store.state.user);
 
+            const onDeleteComment = async (comment) => {
+                try {
+                    await axios.post('/api/comments/delete', {
+                        userid : comment.userid,
+                        comment : comment.comment
+                    })
+                    .then((res) => {
+                        console.log(res.data.message);
+                    })
+                } catch(err) {
+                    console.log('댓글 삭제 에러메시지 : ', err);
+                }
+            }
+
             return {
                 currentUser,
-                moment
+                moment,
+                onDeleteComment,
             }
         }
     }

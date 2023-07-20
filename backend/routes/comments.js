@@ -34,6 +34,24 @@ router.post('/inquiry', (req, res, next) => {
       list : comments
     })
   })
+});
+
+/* 댓글 삭제 */
+router.post('/delete', (req, res, next) => {
+  const comment = {
+    userid : req.body.userid,
+    comment : req.body.comment
+  };
+
+  connection.query(`DELETE FROM comments WHERE userid = '${comment.userid}' AND comment = '${comment.comment}';`, (err, comment) => {
+    if (err) throw err;
+
+    return res.json({
+      message : '댓글 삭제됨',
+      comments : comment 
+    })
+  })
+
 })
 
 module.exports = router;
