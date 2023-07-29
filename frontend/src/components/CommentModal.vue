@@ -23,7 +23,7 @@
                             </div>
                             <span class="userid">{{ post.userid}}</span>
                         </div>
-                        <button v-if="post.userid == currentUser.userid" class="btnDel">삭제</button>
+                        <button v-if="post.userid == currentUser.userid" class="btnDel" @click="onDeletePost(post)">삭제</button>
                     </div>
                     <div class="cont">
                         <!-- feed : 피드 내용 -->
@@ -67,12 +67,14 @@
     import 'moment/locale/ko'  // 1분전, 1시간전, 하루전 이렇게 한글로 노출되게
     import { computed, ref } from 'vue';
     import store from '../store';
+    import { useRouter } from 'vue-router';
 
     export default{
         props : [ 'post', 'comments' ],
-        setup(props) {
+        setup(props, {emit}) {
             const currentUser = computed(() => store.state.user);
             const replyList = ref([]);
+            const router = useRouter();
 
             /* 댓글 삭제 */
             const onDeleteComment = async (comments, idx) => {
@@ -95,11 +97,33 @@
                 }
             }
 
+            /* 게시글 삭제 */
+            const onDeletePost = async (post) => {
+                console.log(post)
+                if(confirm('해당 게시글을 삭제하시겠습니까?')) {
+                    try {
+                        await axios.post('/api/feed/delete', {
+                            postNo : post.postNo
+                        })
+                        .then((res) => {
+                            //emit('close-modal');
+                            router.go();
+                            console.log(res.data.message)
+                        })
+                    }
+                    catch(err) {
+                        console.log('게시글 삭제 에러메시지 : ', err)
+                    }
+                }
+            }
+
             return {
                 currentUser,
                 moment,
                 onDeleteComment,
                 replyList,
+                onDeletePost,
+                router,
             }
         }
     }

@@ -92,4 +92,19 @@ const storage = multer.diskStorage({
     })
   })
   
+  /* 내 게시글 삭제 */
+  router.post('/delete', (req, res, next) => {
+    const postNo = req.body.postNo;
+
+    connection.query(`DELETE FROM post WHERE postNo = '${postNo}'`, (err, post) => {
+      if (err) throw err;
+
+      res.send({
+        success : true,
+        message : '게시글 삭제됨' 
+      })
+    })
+  })
+
+
   module.exports = router;

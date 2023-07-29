@@ -30,6 +30,7 @@ app.use('/api/users/login', usersRouter);
 app.use('/api/feed', feedRouter);
 app.use('/api/feed/post', feedRouter);
 app.use('/api/feed/profile', feedRouter);
+app.use('/api/feed/delete', feedRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/comments', commentRouter);
 app.use('/api/comments/inquiry', commentRouter);
