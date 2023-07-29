@@ -54,7 +54,7 @@
     </ul>
 
     <!-- 댓글 팝업 -->
-    <CommentModal v-bind:post="currPost" v-bind:comments="commentList" v-if="showCommentModal" @close-modal="showCommentModal = false"></CommentModal>
+    <CommentModal :post="currPost" :comments="commentList" v-if="showCommentModal" @close-modal="showCommentModal = false"></CommentModal>
 </template>
 
 <script>
@@ -207,7 +207,6 @@ export default {
                     //console.log('리스트 :', res.data.list)
                     commentList.value = res.data.list; //댓글 리스트
                     commentUserProfile();
-                    //console.log(commentList.value)
                 })
             } catch(err) {
                 console.log('댓글 조회 에러메시지 : ', err)

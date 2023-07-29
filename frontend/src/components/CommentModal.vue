@@ -38,7 +38,7 @@
                         </div>
                         <!--  commentList : 댓글 목록 -->
                         <ul class="commentList">
-                            <li v-for="comment in comments" :key="comment">
+                            <li v-for="(comment, idx) in comments" :key="comment">
                                 <div class="comment">
                                     <div class="img">
                                         <img :src="`${comment.profile_img}`" :alt="`${comment.userid}의 프로필`">
@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="etc">
                                     <span class="date">{{ moment(comment.created_at).fromNow() }}</span>
-                                    <button v-if="comment.userid == currentUser.userid" class="btnDel" @click="onDeleteComment(comment, post)">삭제</button>
+                                    <button v-if="comment.userid == currentUser.userid" class="btnDel" @click="onDeleteComment(comments, idx)">삭제</button>
                                 </div>
                             </li>
                         </ul>
@@ -65,22 +65,30 @@
     import axios from 'axios';
     import moment from 'moment'
     import 'moment/locale/ko'  // 1분전, 1시간전, 하루전 이렇게 한글로 노출되게
-    import { computed } from 'vue';
+    import { computed, ref } from 'vue';
     import store from '../store';
 
     export default{
         props : [ 'post', 'comments' ],
-        setup() {
+        setup(props) {
             const currentUser = computed(() => store.state.user);
+            const replyList = ref([]);
 
-            const onDeleteComment = async (comment) => {
+            /* 댓글 삭제 */
+            const onDeleteComment = async (comments, idx) => {
+                //console.log(comments[idx])
+                replyList.value = props.comments;
+
                 try {
                     await axios.post('/api/comments/delete', {
-                        userid : comment.userid,
-                        comment : comment.comment
+                        userid : comments[idx].userid,
+                        comment : comments[idx].comment
                     })
                     .then((res) => {
                         console.log(res.data.message);
+                        replyList.value.splice(idx,1); //삭제할 댓글의 idx값 가져와서 배열에서 삭제
+                        //console.log(replyList.value);
+                        //console.log('props 변경 확인 : ', props.comments);
                     })
                 } catch(err) {
                     console.log('댓글 삭제 에러메시지 : ', err);
@@ -91,6 +99,7 @@
                 currentUser,
                 moment,
                 onDeleteComment,
+                replyList,
             }
         }
     }
