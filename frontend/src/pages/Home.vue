@@ -139,7 +139,7 @@ export default {
                         postNo : posts.value[i].postNo,
                     })
                     .then((res) => {
-                        console.log(res.data.count)
+                        //console.log(res.data.count)
                         if (res.data.count == 0) { //좋아요 누르지 않았으면 0 : false, 눌렀으면 1 : true
                             posts.value[i].isLiked = false 
                         } else {
