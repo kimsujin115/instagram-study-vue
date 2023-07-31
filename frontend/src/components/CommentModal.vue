@@ -71,7 +71,7 @@
 
     export default{
         props : [ 'post', 'comments' ],
-        setup(props, {emit}) {
+        setup(props) {
             const currentUser = computed(() => store.state.user);
             const replyList = ref([]);
             const router = useRouter();
