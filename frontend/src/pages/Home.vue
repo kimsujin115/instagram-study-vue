@@ -47,7 +47,7 @@
                 <button class="btnMore">...더 보기</button>
             </div>
             <div class="replyInput">
-                <input type="text" placeholder="댓글달기.." v-model="comment">
+                <input type="text" placeholder="댓글달기.." v-model="comment" @keypress.enter="onComments(post)">
                 <button @click="onComments(post)" :class="`${comment ? 'active' : ''}`">입력</button>
             </div>
         </li>
