@@ -161,6 +161,15 @@ input[type='password'] {
                             margin-left:12px;
                             font-size:17px;
                         }
+                        &.active {
+                            .icon {
+                                color:#0095f6
+                            }
+                            span {
+                                font-weight: bold;
+                                color:#0095f6;
+                            }
+                        }
                     }
                 }
             }

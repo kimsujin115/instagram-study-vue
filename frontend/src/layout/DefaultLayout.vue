@@ -8,43 +8,19 @@
                 </h1>
                 <nav>
                     <ul>
-                        <li>
-                            <router-link to="/">
-                                <i class="icon fas fa-house"></i>
-                                <span>홈</span>
-                            </router-link>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="icon fas fa-magnifying-glass"></i>
-                                <span>검색</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="icon far fa-paper-plane"></i>
-                                <span>메세지</span>
-                            </a>
-                        </li>
-                        <li>
-                            <router-link to="/notifications">
-                                <i class="icon fa-regular fa-heart"></i>
-                                <span>알림</span>
-                            </router-link>
-                        </li>
-                        <li>
-                            <a href="javascript:;" @click="showWriteModal = true">
-                                <i class="icon fa-regular fa-square-plus"></i>
-                                <span>만들기</span>
-                            </a>
-                        </li>
-                        <li>
-                            <router-link to="/profile">
-                                <div class="profile">
+                        <li v-for="hash in routeList" :key="hash">
+                            <router-link v-if="hash.name != 'new'" :to="hash.path" :class="`${router.currentRoute.value.name == hash.name ? 'active' : ''}`">
+                                <div v-if="hash.name == 'profile'" class="profile">
                                     <img :src="currentUser.profile_img" :alt="`${currentUser.userid}의 프로필`">
                                 </div>
-                                <span>프로필</span>
+                                <i v-else :class="`${hash.icon}`"></i>
+                                <span>{{ hash.title }}</span>
                             </router-link>
+                            
+                            <a v-else href="javascript:;" @click="showWriteModal = true">
+                                <i :class="`${hash.icon}`"></i>
+                                <span>{{ hash.title }}</span>
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -73,7 +49,7 @@
 </template>
 
 <script>
-import { ref, computed} from 'vue';
+import { ref, computed, onBeforeMount} from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import store from '../store';
 import NewWriteModal from '../components/NewWriteModal.vue';
@@ -85,6 +61,14 @@ export default {
         const route = useRoute();
         const showWriteModal = ref(false);
         const currentUser = computed(() => store.state.user);
+        const routeList = ref([]);
+
+        onBeforeMount(() => {
+            routeList.value = router.options.routes.filter(router => router.meta.isMenu == true);
+            
+            // console.log(router.currentRoute.value.name)
+            // console.log(route.name)
+        })
 
         const onLogout = () => {
             store.commit("SET_USER", null);
@@ -98,6 +82,7 @@ export default {
             onLogout,
             showWriteModal,
             currentUser,
+            routeList,
         }
     }
 }
