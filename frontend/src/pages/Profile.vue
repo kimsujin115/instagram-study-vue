@@ -16,7 +16,7 @@
           <span>팔로워<em>10</em></span>
           <span>팔로우<em>10</em></span>
         </div>
-        <p class="name">{{ profileUser.name}}</p>
+        <p class="name">{{ profileUser.self}}</p>
       </div>
     </div>
 

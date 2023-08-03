@@ -84,7 +84,8 @@ export default {
             username : username.value,
             email : email.value,
             password : password.value,
-            profile_img : './img_profile.jpg'
+            profile_img : './img_profile.jpg',
+            self : '',
           })
           .then((res) => {
             if (res.data.success == true) { //가입성공

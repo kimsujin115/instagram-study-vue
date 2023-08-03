@@ -26,11 +26,12 @@ router.post('/signUp', (req, res, next) => {
     'email' : req.body.email,
     'password' : req.body.password,
     'profile_img' : req.body.profile_img,
+    'self' : req.body.self,
   };
   connection.query(`SELECT userid FROM users WHERE userid = '${user.userid}'`, function(err, row) {
     if ( row[0] == undefined) { //동일한 userid 없을 경우
 
-      connection.query(`INSERT INTO users (userid, name, email, password, profile_img, created_at) VALUES ('${user.userid}', '${user.name}', '${user.email}', '${user.password}', '${user.profile_img}', NOW())`, function(err, row2) {
+      connection.query(`INSERT INTO users (userid, name, email, password, profile_img, self, created_at) VALUES ('${user.userid}', '${user.name}', '${user.email}', '${user.password}', '${user.profile_img}', '${user.self}', NOW())`, function(err, row2) {
         if (err) throw err;
       });
       res.json({

@@ -58,6 +58,21 @@ const storage = multer.diskStorage({
             })
           }
       });
+  });
+
+  router.post('/self', (req, res) => {
+    const user = {
+        'userid' : req.body.userid,
+        'self' : req.body.self,
+    }
+    connection.query(`UPDATE users SET self = '${user.self}' WHERE userid = '${user.userid}'`, (err) => {
+        if (err) throw err;
+
+        return res.json({
+            message : '소개글 등록 완료'
+        })
+    })
+
   })
 
 

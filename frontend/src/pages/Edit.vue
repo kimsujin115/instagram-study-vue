@@ -21,7 +21,7 @@
             <div class="intro">
                 <textarea placeholder="소개글을 입력하세요." v-model="self_intro"></textarea>
                 <p class="numchk">0/100</p>
-                <button class="btnComplete">제출</button>
+                <button class="btnComplete" @click="onEditSelf">제출</button>
             </div>
         </div>
     </div>
@@ -69,12 +69,29 @@ export default{
             }
         }
 
+        /* 프로필 소개글 등록/수정 */
+        const onEditSelf = async () => {
+            try {
+                await axios.post('/api/profile/self', {
+                    userid : currentUser.value.userid,
+                    self : self_intro.value
+                })
+                .then((res) => {
+                    console.log(res.data.message);
+                    self_intro.value = '';
+                })
+            } catch(err) {
+                console.log('프로필 소개 등록 에러메시지 : ', err);
+            }
+        }
+
         return {
             currentUser,
             self_intro,
             profile_img,
             onProfleChange,
             router,
+            onEditSelf,
         }
     }
 }
