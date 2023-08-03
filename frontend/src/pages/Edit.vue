@@ -21,7 +21,7 @@
             <div class="intro">
                 <textarea placeholder="소개글을 입력하세요." v-model="self_intro"></textarea>
                 <p class="numchk">0/100</p>
-                <button class="btnComplete" @click="onEditSelf">제출</button>
+                <button :class="`btnComplete ${self_intro ? 'active' : ''}`" @click="onEditSelf">제출</button>
             </div>
         </div>
     </div>
