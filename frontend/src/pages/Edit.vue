@@ -19,24 +19,23 @@
         <div class="row">
             <em class="tit">소개</em>
             <div class="intro">
-                <textarea placeholder="소개글을 입력하세요." v-model="self_intro"></textarea>
+                <textarea placeholder="소개글을 입력하세요." :value="self_intro" @input="getInputSelf"></textarea>
                 <p class="numchk">0/100</p>
                 <button :class="`btnComplete ${self_intro ? 'active' : ''}`" @click="onEditSelf">제출</button>
             </div>
         </div>
     </div>
 </template>
-
 <script>
 import store from '../store'
-import { computed, ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
 export default{
     setup() {
         const currentUser = computed(() => store.state.user);
-        const self_intro = ref('');
+        const self_intro = ref(currentUser.value.self);
         const profile_img = ref(null);
         const router = useRouter();
         const formData = new FormData();
@@ -68,20 +67,27 @@ export default{
                 }
             }
         }
+        
+        /* 프로필 소개글 value 가져오기 */
+        const getInputSelf = (e) => {
+            self_intro.value = e.target.value
+        }
 
         /* 프로필 소개글 등록/수정 */
         const onEditSelf = async () => {
-            try {
-                await axios.post('/api/profile/self', {
-                    userid : currentUser.value.userid,
-                    self : self_intro.value
-                })
-                .then((res) => {
-                    console.log(res.data.message);
-                    self_intro.value = '';
-                })
-            } catch(err) {
-                console.log('프로필 소개 등록 에러메시지 : ', err);
+            if ( confirm('소개글을 등록/수정하시겠습니까?')) {
+                try {
+                    await axios.post('/api/profile/self', {
+                        userid : currentUser.value.userid,
+                        self : self_intro.value
+                    })
+                    .then((res) => {
+                        console.log(res.data.message);
+                        store.commit('SET_INTRODUCE', self_intro.value); //store 저장해서 기억해놓기
+                    })
+                } catch(err) {
+                    console.log('프로필 소개 등록 에러메시지 : ', err);
+                }
             }
         }
 
@@ -89,8 +95,9 @@ export default{
             currentUser,
             self_intro,
             profile_img,
-            onProfleChange,
             router,
+            onProfleChange,
+            getInputSelf,
             onEditSelf,
         }
     }

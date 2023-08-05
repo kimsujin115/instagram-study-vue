@@ -13,6 +13,9 @@ const store = createStore({
         },
         SET_PROFILE : (state, image) => {
             state.user.profile_img = image
+        },
+        SET_INTRODUCE : (state, self) => {
+            state.user.self = self
         }
     },
     //새로고침 시 상태 초기화 방지하는 플러그인
