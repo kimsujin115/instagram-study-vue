@@ -17,6 +17,7 @@
           <span>팔로우<em>10</em></span>
         </div>
         <p class="name" v-if="profileUser.self">{{ profileUser.self}}</p>
+        <button type="button" class="btnFollow">팔로우</button>
       </div>
     </div>
 

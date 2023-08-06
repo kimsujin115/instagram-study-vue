@@ -541,6 +541,14 @@ input[type='password'] {
     .mypageWrap .profile .myinfo .name {
       margin-top: 10px;
       font-size: 14px; }
+    .mypageWrap .profile .myinfo .btnFollow {
+      margin-top: 10px;
+      width: 100%;
+      height: 30px;
+      color: #fff;
+      font-size: 14px;
+      border-radius: 5px;
+      background: #0095f6; }
 
 .mypageWrap .myfeed ul {
   display: flex;
