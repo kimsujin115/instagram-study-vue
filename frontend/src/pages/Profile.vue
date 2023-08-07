@@ -17,7 +17,7 @@
           <span>팔로우<em>10</em></span>
         </div>
         <p class="name" v-if="profileUser.self">{{ profileUser.self}}</p>
-        <button type="button" class="btnFollow">팔로우</button>
+        <button v-if="currentUser.userid != profileUser.userid" type="button" class="btnFollow" @click="onFollow">팔로우</button>
       </div>
     </div>
 
@@ -79,12 +79,64 @@ export default {
       } catch(err) {
           console.log('에러메세지 : ', err)
       }
+
+      /* 팔로잉 여부 확인 */
+      try {
+        await axios.post('/api/follow', {
+          'userid' : currentUser.value.userid,
+          'followid' : profileUser.value.userid,
+        })
+        .then((res) => { 
+            if (res.data.list.length == 0) {
+              document.querySelector('.btnFollow').classList.remove('active')
+            } else {
+              document.querySelector('.btnFollow').classList.add('active')
+            }
+        })
+      } catch(err) {
+          console.log('팔로잉 에러메세지 : ', err)
+      }
     });
+
+    
+    /* 팔로우 */
+    const onFollow = async () => {
+      if (!document.querySelector('.btnFollow').classList.contains('active')) {
+        /* 팔로우 */
+        try {
+          await axios.post('/api/follow/follow', {
+            userid : currentUser.value.userid,
+            followid : profileUser.value.userid,
+          })
+          .then((res) => {
+            console.log(res.data.message);
+            document.querySelector('.btnFollow').classList.add('active');
+          })
+        } catch(err) {
+          console.log('팔로우 에러메시지 : ', err)
+        }
+      } else {
+        /* 언팔로우 */
+        try {
+          await axios.post('/api/follow/unfollow', {
+            userid : currentUser.value.userid,
+            followid : profileUser.value.userid,
+          })
+          .then((res) => {
+            console.log(res.data.message);
+            document.querySelector('.btnFollow').classList.remove('active');
+          })
+        } catch(err) {
+          console.log('언팔로우 에러메시지 : ', err)
+        }
+      }
+    }
 
     return {
       currentUser,
       profileUser,
       feeds,
+      onFollow,
     }
   }
 }

@@ -734,6 +734,11 @@ input[type='password'] {
                 font-size:14px;
                 border-radius: 5px;
                 background:#0095f6;
+                &.active {
+                    color:#000;
+                    border:1px solid #ddd;
+                    background:#fff;
+                }
             }
         }
     }

@@ -549,6 +549,10 @@ input[type='password'] {
       font-size: 14px;
       border-radius: 5px;
       background: #0095f6; }
+      .mypageWrap .profile .myinfo .btnFollow.active {
+        color: #000;
+        border: 1px solid #ddd;
+        background: #fff; }
 
 .mypageWrap .myfeed ul {
   display: flex;

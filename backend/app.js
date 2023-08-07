@@ -22,6 +22,7 @@ const feedRouter = require('./routes/feed');
 const profileRouter = require('./routes/profile');
 const commentRouter = require('./routes/comments');
 const likesRouter = require('./routes/likes');
+const followRouter = require('./routes/follow');
 
 app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
@@ -39,6 +40,9 @@ app.use('/api/comments/delete', commentRouter);
 app.use('/api/likes', likesRouter);
 app.use('/api/likes/addLike', likesRouter);
 app.use('/api/likes/deleteLike', likesRouter);
+app.use('/api/follow', followRouter);
+app.use('/api/follow/follow', followRouter);
+app.use('/api/follow/unfollow', followRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
