@@ -47,7 +47,7 @@ export default {
     const feeds = ref([]);
     const route = useRoute();
 
-    //console.log('profileUser', profileUser)
+    console.log('profileUser', profileUser)
 
     onBeforeMount( async () => {
       const profileUID = route.params.userid ?? currentUser.value.userid; //params값이 null이면 현재 로그인 된 유저
@@ -81,20 +81,22 @@ export default {
       }
 
       /* 팔로잉 여부 확인 */
-      try {
-        await axios.post('/api/follow', {
-          'userid' : currentUser.value.userid,
-          'followid' : profileUser.value.userid,
-        })
-        .then((res) => { 
-            if (res.data.list.length == 0) {
-              document.querySelector('.btnFollow').classList.remove('active')
-            } else {
-              document.querySelector('.btnFollow').classList.add('active')
-            }
-        })
-      } catch(err) {
-          console.log('팔로잉 에러메세지 : ', err)
+      if (profileUser.value.userid != currentUser.value.userid) {
+        try {
+          await axios.post('/api/follow', {
+            'userid' : currentUser.value.userid,
+            'followid' : profileUser.value.userid,
+          })
+          .then((res) => { 
+              if (res.data.list.length == 0) {
+                document.querySelector('.btnFollow').classList.remove('active')
+              } else {
+                document.querySelector('.btnFollow').classList.add('active')
+              }
+          })
+        } catch(err) {
+            console.log('팔로잉 에러메세지 : ', err)
+        }
       }
     });
 
