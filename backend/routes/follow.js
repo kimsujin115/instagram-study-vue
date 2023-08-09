@@ -32,10 +32,10 @@ router.post('/follow', (req, res, next) => {
     if (err) throw err;
 
     connection.query(`
-        SET @followNum := (SELECT follower_num FROM users WHERE userid = '${follow.userid}'); 
-        UPDATE users SET follower_num = @followNum+1 WHERE userid = '${follow.userid}';
-        SET @followingNum := (SELECT following_num FROM users WHERE userid = '${follow.followid}'); 
-        UPDATE users SET following_num = @followingNum+1 WHERE userid = '${follow.followid}';`, (err2, row2) => {
+        SET @followNum := (SELECT follower_num FROM users WHERE userid = '${follow.followid}'); 
+        UPDATE users SET follower_num = @followNum+1 WHERE userid = '${follow.followid}';
+        SET @followingNum := (SELECT following_num FROM users WHERE userid = '${follow.userid}'); 
+        UPDATE users SET following_num = @followingNum+1 WHERE userid = '${follow.userid}';`, (err2, row2) => {
 
         if (err2) throw err2;
 
@@ -57,10 +57,10 @@ router.post('/unfollow', (req, res, next) => {
 
     /* users 테이블에 팔로우/팔로잉 갯수 저장 후 follow 테이블에서 삭제 */
     connection.query(`
-        SET @followNum := (SELECT follower_num FROM users WHERE userid = '${follow.userid}'); 
-        UPDATE users SET follower_num = @followNum-1 WHERE userid = '${follow.userid}';
-        SET @followingNum := (SELECT following_num FROM users WHERE userid = '${follow.followid}'); 
-        UPDATE users SET following_num = @followingNum-1 WHERE userid = '${follow.followid}';`, (err, row) => {
+        SET @followNum := (SELECT follower_num FROM users WHERE userid = '${follow.followid}'); 
+        UPDATE users SET follower_num = @followNum-1 WHERE userid = '${follow.followid}';
+        SET @followingNum := (SELECT following_num FROM users WHERE userid = '${follow.userid}'); 
+        UPDATE users SET following_num = @followingNum-1 WHERE userid = '${follow.userid}';`, (err, row) => {
 
         if (err) throw err;
         
