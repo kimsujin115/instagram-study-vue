@@ -13,8 +13,8 @@
         </div>
         <div class="nums">
           <span>게시글<em>{{feeds.length}}</em></span>
-          <span>팔로워<em>10</em></span>
-          <span>팔로우<em>10</em></span>
+          <span>팔로워<em>{{ profileUser.follower_num }}</em></span>
+          <span>팔로우<em>{{ profileUser.following_num }}</em></span>
         </div>
         <p class="name" v-if="profileUser.self">{{ profileUser.self}}</p>
         <button v-if="currentUser.userid != profileUser.userid" type="button" class="btnFollow" @click="onFollow">팔로우</button>
