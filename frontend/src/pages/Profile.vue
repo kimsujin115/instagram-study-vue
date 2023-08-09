@@ -47,8 +47,7 @@ export default {
     const feeds = ref([]);
     const route = useRoute();
 
-    console.log('profileUser', profileUser)
-
+    // console.log('profileUser', profileUser)
     onBeforeMount( async () => {
       const profileUID = route.params.userid ?? currentUser.value.userid; //params값이 null이면 현재 로그인 된 유저
       // console.log('profileUID : ', route.params.userid)

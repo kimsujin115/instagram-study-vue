@@ -86,6 +86,8 @@ export default {
             password : password.value,
             profile_img : './img_profile.jpg',
             self : '',
+            follower_num : 0,
+            following_num : 0,
           })
           .then((res) => {
             if (res.data.success == true) { //가입성공
