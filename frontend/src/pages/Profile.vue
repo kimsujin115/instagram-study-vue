@@ -111,6 +111,7 @@ export default {
           })
           .then((res) => {
             console.log(res.data.message);
+            profileUser.value.follower_num = res.data.profileUser.follower_num; // 변경된 팔로우 수
             document.querySelector('.btnFollow').classList.add('active');
           })
         } catch(err) {
@@ -125,6 +126,7 @@ export default {
           })
           .then((res) => {
             console.log(res.data.message);
+            profileUser.value.follower_num = res.data.profileUser.follower_num; // 변경된 팔로우 수
             document.querySelector('.btnFollow').classList.remove('active');
           })
         } catch(err) {
