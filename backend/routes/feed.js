@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const multer  = require('multer');
+const fs = require('fs'); // 파일 자체를 삭제하기 위해 file System인 fs를 설치
 
 const storage = multer.diskStorage({
     //파일저장경로
@@ -94,16 +95,30 @@ const storage = multer.diskStorage({
   
   /* 내 게시글 삭제 */
   router.post('/delete', (req, res, next) => {
-    const postNo = req.body.postNo;
+    const post = {
+      'postNo' : req.body.postNo,
+      'img_url' : req.body.imgurl,
+    };
+    //console.log(post.img_url);
 
-    connection.query(`DELETE FROM post WHERE postNo = '${postNo}'`, (err, post) => {
+    connection.query(`DELETE FROM post WHERE postNo = '${post.postNo}'`, (err, post) => {
       if (err) throw err;
 
       res.send({
         success : true,
         message : '게시글 삭제됨' 
       })
-    })
+    });
+
+    /* DB에서만 삭제하지말고, 파일 자체도 삭제 */
+    if (fs.existsSync(`public/${post.img_url}`)) {
+        try {
+          fs.unlinkSync(`public/${post.img_url}`);
+          console.log('image delete');
+        } catch (error) {
+          console.log(error);
+      }
+    }
   })
 
 
