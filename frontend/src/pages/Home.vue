@@ -42,7 +42,11 @@
             </div>
             <p class="like_num">좋아요 {{post.num_likes}}</p>
             <div class="feedText">
-                <span class="writer">{{ post.userid }}</span>
+                <span class="writer">
+                    <router-link :to="`/profile/${post.userid}`">
+                        {{ post.userid }}
+                    </router-link>
+                </span>
                 <span class="text">{{post.content}}</span>
                 <button class="btnMore">...더 보기</button>
             </div>
