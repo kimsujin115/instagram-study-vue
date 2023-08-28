@@ -19,8 +19,8 @@
         <div class="row">
             <em class="tit">소개</em>
             <div class="intro">
-                <textarea placeholder="소개글을 입력하세요." :value="self_intro" @input="getInputSelf"></textarea>
-                <p class="numchk">0/100</p>
+                <textarea placeholder="소개글을 입력하세요." :value="self_intro" @input="getInputSelf" maxlength="100"></textarea>
+                <p class="numchk">{{ self_intro.length }}/100</p>
                 <button :class="`btnComplete ${self_intro ? 'active' : ''}`" @click="onEditSelf">제출</button>
             </div>
         </div>
@@ -28,7 +28,7 @@
 </template>
 <script>
 import store from '../store'
-import { computed, onBeforeMount, ref } from 'vue';
+import { computed, ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
