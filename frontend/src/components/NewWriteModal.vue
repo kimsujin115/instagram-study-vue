@@ -31,8 +31,8 @@
             <span>{{currentUser.userid}}</span>
           </div>
           <div class="textBox">
-            <textarea placeholder="문구 입력..." v-model="postContent"></textarea>
-            <p class="length">0/2000</p>
+            <textarea placeholder="문구 입력..." v-model="postContent" maxlength="2000"></textarea>
+            <p class="length">{{ postContent.length }}/2000</p>
           </div>
         </div>
       </div>
