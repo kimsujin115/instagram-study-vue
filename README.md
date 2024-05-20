@@ -1,4 +1,4 @@
-# instagram-study-vue
+# instagram-study-vue (2023)
 
 instagram clone coding study (vue3, mysql)
 
